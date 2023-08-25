@@ -31,3 +31,12 @@ export interface User {
   birthYear: string;
   username: string;
 }
+
+export interface TravelData {
+  departCity: string;
+  arrivalCity: string;
+  date: string;
+  id?: number;
+  availableSeats?: number;
+  price?: number;
+}

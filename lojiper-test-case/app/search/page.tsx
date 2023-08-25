@@ -1,50 +1,79 @@
-import React, { useContext } from "react";
+"use client";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { MainContext } from "../Context/mainProvider";
-import "../styles/SearchResults.css";
+import { fetchTravelData } from "@/data-access/fetchTravelData";
+import { TravelData } from "../Interfaces/uiRelatedTypes";
 
-export default function SearchResults({ results }) {
-  const { isLogin, userName } = useContext(MainContext);
+const SearchResultsPage = () => {
+  const { isLogin, userName, userSearchQuery } = useContext(MainContext);
+  const [searchResults, setSearchResults] = useState<TravelData | null>(null);
 
-  return (
-    <>
-      <header className="header">
-        <h1>Bus Ticket App</h1>
-      </header>
+  useEffect(() => {
+    fetchTravelData(userSearchQuery)
+      .then((results) => {
+        setSearchResults(results || null);
+      })
+      .catch((error) => {
+        console.error("Hata:", error);
+      });
+  }, []);
+
+  const renderHeader = () => (
+    <header className="header">
+      <h1>Bus Ticket App</h1>
+      <Link href="/">
+        <button>Anasayfa</button>
+      </Link>
+    </header>
+  );
+
+  const renderWelcomeMessage = () => (
+    <h1>
       {isLogin ? (
-        <h1> Hoşgeldin, {userName}</h1>
+        `Hoşgeldin, ${userName}`
       ) : (
         <Link href="/login">
           <button>Giriş Yap</button>
         </Link>
       )}
-      <main className="main">
-        <div className="resultsContainer">
-          <h2>Arama Sonuçları</h2>
-          {results.length > 0 ? (
-            <ul className="resultsList">
-              {results.map((result) => (
-                <li key={result.id} className="resultItem">
-                  <p>
-                    {result.departureCity} - {result.arrivalCity}
-                  </p>
-                  <p>Tarih: {result.date}</p>
-                  <p>Boş Koltuk Sayısı: {result.availableSeats}</p>
-                  <p>Fiyat: {result.price} TL</p>
-                  <Link href={`/buy/${result.id}`}>
-                    <a>Bilet Satın Al</a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>Uygun sefer bulunamadı.</p>
-          )}
+    </h1>
+  );
+
+  const renderResults = () => (
+    <div className="resultsContainer">
+      <h2>Arama Sonuçları</h2>
+      <h3>Şunun için arama yaptınız:</h3>
+      <p>{`${userSearchQuery.departCity}'dan, ${userSearchQuery.arrivalCity}'a, ${userSearchQuery.inputDate} tarihinde uygun seferler`}</p>
+      <hr></hr>
+      {searchResults ? (
+        <div className="searchResult">
+          <p>sefer no: {searchResults.id}</p>
+          <p>sefer tarihi: {searchResults.date}</p>
+          <p>
+            rota: {searchResults.departCity} &gt; {searchResults.arrivalCity}
+          </p>
+          <p>bilet fiyatı: {searchResults.price} ₺</p>
+          <p>boş koltuk sayısı: {searchResults.availableSeats}</p>
         </div>
-      </main>
-      <footer className="footer">
-        <p>&copy; {new Date().getFullYear()} Bus Ticket App</p>
-      </footer>
+      ) : null}
+    </div>
+  );
+
+  const renderFooter = () => (
+    <footer className="footer">
+      <p>&copy; {new Date().getFullYear()} Bus Ticket App</p>
+    </footer>
+  );
+
+  return (
+    <>
+      {renderHeader()}
+      {renderWelcomeMessage()}
+      <main className="main">{renderResults()}</main>
+      {renderFooter()}
     </>
   );
-}
+};
+
+export default SearchResultsPage;

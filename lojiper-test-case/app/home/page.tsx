@@ -3,29 +3,41 @@ import React, { useContext, useState } from "react";
 import "../styles/Home.css";
 import Link from "next/link";
 import { MainContext } from "../Context/mainProvider";
+import {
+  showToastFail,
+  showToastSuccess,
+} from "../register/components/ShowToast";
+import { ToastContainer } from "react-toastify";
+import router from "next/router";
+import { useRouter } from "next/navigation";
+import Loading from "../components/Loading";
+import Header from "../components/Header";
 
 const Home = () => {
-  const { isLogin, userName } = useContext(MainContext);
+  const { isLogin, userName, setUserSearchQuery, userSearchQuery } =
+    useContext(MainContext);
+  const router = useRouter();
   const [departCity, setDepartCity] = useState("");
   const [arrivalCity, setArrivalCity] = useState("");
   const [inputDate, setInputDate] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearchSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(
-      "kalkış" + departCity + " varış" + arrivalCity + " tarih" + inputDate
-    );
-  };
-
-  const renderLoginButton = () => {
-    if (isLogin) {
-      return <h1> hoşgeldin {userName}</h1>;
+    if (departCity === "" || arrivalCity === "" || inputDate === "") {
+      showToastFail("Eksik Bilgi Girdiniz");
     } else {
-      return (
-        <Link href="/login">
-          <button>Giriş Yap</button>
-        </Link>
-      );
+      const userNewSearch = {
+        departCity: departCity,
+        arrivalCity: arrivalCity,
+        inputDate: inputDate,
+      };
+      setUserSearchQuery(userNewSearch);
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        router.push("/search");
+      }, 1300);
     }
   };
 
@@ -61,10 +73,8 @@ const Home = () => {
 
   return (
     <>
-      <header className="header">
-        <h1>Bus Ticket App</h1>
-      </header>
-      {renderLoginButton()}
+      <ToastContainer />
+
       <main className="main">
         <div className="formContainer">
           <h2>Seferleri Ara</h2>
@@ -85,6 +95,7 @@ const Home = () => {
             />
 
             <button type="submit">Ara</button>
+            {isLoading && <Loading />}
           </form>
         </div>
       </main>

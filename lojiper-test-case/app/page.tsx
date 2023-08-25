@@ -4,16 +4,15 @@ import React, { useContext } from "react";
 import Home from "./home/page";
 import Link from "next/link";
 import { MainContext } from "./Context/mainProvider";
+import Header from "./components/Header";
 
 export default function App() {
-  const { isLogin, setIsLogin, userInfo } = useContext(MainContext);
-  console.log(userInfo);
+  const { isLogin, setIsLogin } = useContext(MainContext);
 
   return (
     <>
       <header>
-        <Link href="/">Anasayfa</Link>
-        {isLogin ? <p onClick={() => setIsLogin(false)}>çıkış yap</p> : <></>}
+        <Header />
       </header>
       <main className="container">
         <Home />
