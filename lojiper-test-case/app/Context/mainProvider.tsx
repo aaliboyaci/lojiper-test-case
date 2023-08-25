@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 export interface UserInfo {
   email: string;
   password: string;
@@ -30,7 +30,6 @@ export const MainContext = createContext<MainContextProps>({
 export const MainProvider: React.FC<MainProviderProps> = ({ children }) => {
   const [isLogin, setIsLogin] = useState(false);
   const [userName, setUserName] = useState("");
-  const [userInfo, setUserInfo] = useState({});
 
   const contextValues: MainContextProps = {
     isLogin,
