@@ -21,31 +21,23 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-container">
-        <div className="logo">
+        <div className="title-app">
           <Link href="/">Bus Ticket App</Link>
         </div>
-        <nav className="nav">
-          <ul>
-            <li>
-              <Link href="/">Ana Sayfa</Link>
-            </li>
-            <li>
-              {isLogin ? (
-                <span>Hoşgeldin, {userName}</span>
-              ) : (
-                <Link href="/login">Giriş Yap</Link>
-              )}
-            </li>
-            <li>
-              <Link href="/cart">
-                Sepet{" "}
-                {/* {cartItems.length > 0 && (
+        <div className="nav">
+          {isLogin ? (
+            <span>Hoşgeldin, {userName}</span>
+          ) : (
+            <Link href="/login">Giriş Yap</Link>
+          )}
+
+          <Link href="/cart">
+            Sepet{" "}
+            {/* {cartItems.length > 0 && (
                   <span className="cart-item-count">{cartItems.length}</span>
                 )} */}
-              </Link>
-            </li>
-          </ul>
-        </nav>
+          </Link>
+        </div>
       </div>
     </header>
   );
