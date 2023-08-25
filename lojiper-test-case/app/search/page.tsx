@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { MainContext } from "../Context/mainProvider";
-import { fetchTravelData } from "@/data-access/fetchTravelData";
+import { fetchTravelData } from "@/business-logic/fetchTravelData";
 import { TravelData } from "../Interfaces/uiRelatedTypes";
 
 const SearchResultsPage = () => {
