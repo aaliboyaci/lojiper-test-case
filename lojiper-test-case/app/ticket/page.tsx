@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -19,6 +19,7 @@ import "../styles/Home.css";
 import Header from "../components/Header";
 
 const SeatSelectionPage: React.FC = () => {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const departCity = searchParams.get("depart");
@@ -32,6 +33,7 @@ const SeatSelectionPage: React.FC = () => {
   );
 
   useEffect(() => {
+    setSelectedSeats([]);
     fetchBusSeatData(Number(id))
       .then((results) => {
         console.log(results);
@@ -66,7 +68,6 @@ const SeatSelectionPage: React.FC = () => {
   const busLayout: (string | null)[][] = Array.from({ length: numRows }, () =>
     Array(numCols).fill(null)
   );
-
   seatData.forEach(
     (seat: {
       row: number;
@@ -94,6 +95,8 @@ const SeatSelectionPage: React.FC = () => {
 
   const calculateTotalPrice = () => {
     const basePrice = searchResults?.price;
+    console.log(`seçilen koltuk sayısı=`);
+    console.log(selectedSeats.length);
     return basePrice ? basePrice * selectedSeats.length : null;
   };
 
@@ -143,20 +146,24 @@ const SeatSelectionPage: React.FC = () => {
         <div className="total-price">
           Toplam Ücret: {calculateTotalPrice()} TL
         </div>
-        <Link href="/payment">
-          <button
-            className="continue-button"
-            onClick={() =>
+        <button
+          className="continue-button"
+          onClick={() => {
+            if (selectedSeats.length === 0) {
+              toast.warn("Koltuk seçmediniz");
+            } else {
               setTotalPrice(
                 searchResults?.price
                   ? searchResults.price * selectedSeats.length
                   : 0
-              )
+              );
+              setSelectedSeats([]);
+              router.push("/payment");
             }
-          >
-            Devam Et
-          </button>
-        </Link>
+          }}
+        >
+          Ödeme
+        </button>
         <ToastContainer />
       </div>
     </div>
