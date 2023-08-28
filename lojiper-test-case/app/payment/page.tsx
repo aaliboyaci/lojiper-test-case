@@ -5,9 +5,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { MainContext } from "../Context/mainProvider";
 import Link from "next/link";
 import Loading from "../components/Loading";
+import Header from "../components/Header";
+import "../styles/Home.css";
 
 const PaymentPage: React.FC = () => {
-  const { totalPrice } = useContext(MainContext);
+  const { totalPrice, setTotalPrice } = useContext(MainContext);
   const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
   const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
 
@@ -23,7 +25,8 @@ const PaymentPage: React.FC = () => {
     setPaymentInfo((prevInfo) => ({ ...prevInfo, [name]: value }));
   };
 
-  const handlePaymentSubmit = () => {
+  const handlePaymentSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
     if (
       paymentInfo.cardNumber === "" ||
       paymentInfo.cardHolder === "" ||
@@ -40,12 +43,12 @@ const PaymentPage: React.FC = () => {
       setIsPaymentProcessing(false);
       setIsPaymentSuccessful(true);
       toast.success("Ödeme başarıyla tamamlandı!");
-    }, 1700);
+    }, 1800);
   };
 
   return (
-    <div className="payment-page">
-      <Link href="/">Anasayfa</Link>
+    <div className="main">
+      <Header />
       <h1>Ödeme</h1>
       <h2>Toplam Tutar: {totalPrice} ₺</h2>
 
@@ -56,52 +59,56 @@ const PaymentPage: React.FC = () => {
           {isPaymentSuccessful ? (
             <>
               <p>Ödeme başarıyla tamamlandı!</p>
-              <Link href="/">Anasayfaya Dön</Link>
+              <Link href="/" onClick={() => setTotalPrice(0)}>
+                Anasayfaya Dön
+              </Link>
             </>
           ) : (
             <div className="payment-form">
-              <label htmlFor="cardNumber">Kart Numarası</label>
-              <input
-                type="text"
-                id="cardNumber"
-                name="cardNumber"
-                value={paymentInfo.cardNumber}
-                onChange={handleInputChange}
-              />
+              <form onSubmit={handlePaymentSubmit}>
+                <label htmlFor="cardNumber">Kart Numarası</label>
+                <input
+                  type="text"
+                  id="cardNumber"
+                  name="cardNumber"
+                  value={paymentInfo.cardNumber}
+                  onChange={handleInputChange}
+                />
 
-              <label htmlFor="cardHolder">Kart Sahibi</label>
-              <input
-                type="text"
-                id="cardHolder"
-                name="cardHolder"
-                value={paymentInfo.cardHolder}
-                onChange={handleInputChange}
-              />
+                <label htmlFor="cardHolder">Kart Sahibi</label>
+                <input
+                  type="text"
+                  id="cardHolder"
+                  name="cardHolder"
+                  value={paymentInfo.cardHolder}
+                  onChange={handleInputChange}
+                />
 
-              <label htmlFor="expirationDate">
-                Son Kullanma Tarihi (AA/YY)
-              </label>
-              <input
-                type="text"
-                id="expirationDate"
-                name="expirationDate"
-                value={paymentInfo.expirationDate}
-                onChange={handleInputChange}
-                placeholder="AA/YY"
-                maxLength={5}
-              />
+                <label htmlFor="expirationDate">
+                  Son Kullanma Tarihi (AA/YY)
+                </label>
+                <input
+                  type="text"
+                  id="expirationDate"
+                  name="expirationDate"
+                  value={paymentInfo.expirationDate}
+                  onChange={handleInputChange}
+                  placeholder="AA/YY"
+                  maxLength={5}
+                />
 
-              <label htmlFor="cvv">CVV</label>
-              <input
-                type="text"
-                id="cvv"
-                name="cvv"
-                value={paymentInfo.cvv}
-                onChange={handleInputChange}
-                maxLength={3}
-              />
+                <label htmlFor="cvv">CVV</label>
+                <input
+                  type="text"
+                  id="cvv"
+                  name="cvv"
+                  value={paymentInfo.cvv}
+                  onChange={handleInputChange}
+                  maxLength={3}
+                />
 
-              <button onClick={handlePaymentSubmit}>Ödemeyi Onayla</button>
+                <button onClick={handlePaymentSubmit}>Ödemeyi Onayla</button>
+              </form>
             </div>
           )}
         </>

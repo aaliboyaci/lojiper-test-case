@@ -7,6 +7,8 @@ import Loading from "../components/Loading";
 import { validateUserLogin } from "../../business-logic/userValidation";
 import { MainContext } from "../Context/mainProvider";
 import { LoginFormProps, User } from "../Interfaces/uiRelatedTypes";
+import Header from "../components/Header";
+import "../styles/Home.css";
 
 const LoginForm: React.FC<LoginFormProps> = ({
   username,
@@ -85,8 +87,8 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <Link href="/">Anasayfa</Link>
+    <div className="main">
+      <Header />
       <h1>Kullanıcı Girişi</h1>
       <LoginForm
         username={username}

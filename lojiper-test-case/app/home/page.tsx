@@ -74,7 +74,7 @@ const Home = () => {
   return (
     <>
       <ToastContainer />
-
+      <Header />
       <main className="main">
         <div className="formContainer">
           <h2>Seferleri Ara</h2>

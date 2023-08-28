@@ -11,6 +11,7 @@ import BirthdateInput from "./components/BirthdateInput";
 import "react-toastify/dist/ReactToastify.css";
 import { showToastFail, showToastSuccess } from "./components/ShowToast";
 import { ToastContainer } from "react-toastify";
+import Header from "../components/Header";
 
 export default function Register() {
   const router = useRouter();
@@ -76,7 +77,7 @@ export default function Register() {
         setIsLoading(false);
         setTimeout(() => {
           router.push("/login");
-        }, 2600);
+        }, 2400);
       } else if (!isSaved) {
         setIsLoading(false);
         showToastFail("Bu kullanıcı adı kullanılıyor");
@@ -87,8 +88,8 @@ export default function Register() {
 
   return (
     <div className="register-container">
+      <Header />
       <ToastContainer />
-      <a href="/">Anasayfa</a>
       <div className="register-form">
         <h1>Kayıt Ol</h1>
         <form onSubmit={handleRegister}>

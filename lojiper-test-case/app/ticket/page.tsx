@@ -15,6 +15,7 @@ import { fetchTravelData } from "@/business-logic/fetchTravelData";
 import { MainContext } from "../Context/mainProvider";
 import { TravelData } from "../Interfaces/uiRelatedTypes";
 import handleSeatClick from "./components/handeSeatClick";
+import "../styles/Home.css";
 
 const SeatSelectionPage: React.FC = () => {
   const searchParams = useSearchParams();
@@ -51,7 +52,11 @@ const SeatSelectionPage: React.FC = () => {
   }, []);
 
   if (!newSeatData) {
-    return <Loading />;
+    return (
+      <div className="main">
+        <Loading />
+      </div>
+    );
   }
 
   const seatData = newSeatData;
