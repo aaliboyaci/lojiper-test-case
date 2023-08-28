@@ -8,16 +8,20 @@ import Header from "../components/Header";
 import "../styles/Home.css";
 import { fetchBusSeatData } from "@/business-logic/fetchBusSeatData";
 import { BusSeatData } from "../api/travelData/busSeatData/busSeatData";
+import Loading from "../components/Loading";
 
 const SearchResultsPage = () => {
   const { isLogin, userName, userSearchQuery } = useContext(MainContext);
   const [searchResults, setSearchResults] = useState<TravelData | null>(null);
   const [seatInfo, setSeatInfo] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    setIsLoading(true);
     fetchTravelData(userSearchQuery)
       .then((results) => setSearchResults(results || null))
       .catch((error) => console.error("Hata:", error));
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -42,6 +46,7 @@ const SearchResultsPage = () => {
         {`${userSearchQuery.departCity}'dan, ${userSearchQuery.arrivalCity}'a, ${userSearchQuery.inputDate} tarihinde uygun seferler`}
       </p>
       <hr />
+      <div className="main">{isLoading && <Loading />}</div>
       {searchResults ? (
         <div className="searchResult">
           <p>Sefer No: {searchResults.id}</p>
@@ -69,7 +74,7 @@ const SearchResultsPage = () => {
           </p>
         </div>
       ) : (
-        <h2>Uygun Sefer bulunumadı</h2>
+        <h2>Uygun Sefer Bulunumadı</h2>
       )}
     </div>
   );

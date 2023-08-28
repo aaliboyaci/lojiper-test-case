@@ -37,7 +37,7 @@ const Home = () => {
       setTimeout(() => {
         setIsLoading(false);
         router.push("/search");
-      }, 1300);
+      }, 600);
     }
   };
 
