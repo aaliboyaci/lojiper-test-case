@@ -22,7 +22,7 @@ const SeatSelectionPage: React.FC = () => {
   const departCity = searchParams.get("depart");
   const arrivalCity = searchParams.get("arrival");
   const { userGender } = useContext(MainContext);
-  const { userSearchQuery, userName } = useContext(MainContext);
+  const { userSearchQuery, userName, setTotalPrice } = useContext(MainContext);
   const [searchResults, setSearchResults] = useState<TravelData | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const [newSeatData, setNewSeatData] = useState<BusSeatData | undefined>(
@@ -137,7 +137,18 @@ const SeatSelectionPage: React.FC = () => {
         Toplam Ücret: {calculateTotalPrice()} TL
       </div>
       <Link href="/payment">
-        <button className="continue-button">Devam Et</button>
+        <button
+          className="continue-button"
+          onClick={() =>
+            setTotalPrice(
+              searchResults?.price
+                ? searchResults.price * selectedSeats.length
+                : 0
+            )
+          }
+        >
+          Devam Et
+        </button>
       </Link>
       <ToastContainer />
     </div>

@@ -5,7 +5,7 @@ export const allTravelData = [
     arrivalCity: "İzmir",
     date: "2023-08-31",
     availableSeats: 14,
-    price: 100,
+    price: 468,
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ export const allTravelData = [
     arrivalCity: "Antalya",
     date: "2023-08-31",
     availableSeats: 16,
-    price: 150,
+    price: 348,
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ export const allTravelData = [
     arrivalCity: "Antalya",
     date: "2023-08-31",
     availableSeats: 7,
-    price: 120,
+    price: 398,
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ export const allTravelData = [
     arrivalCity: "İzmir",
     date: "2023-08-31",
     availableSeats: 13,
-    price: 110,
+    price: 412,
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ export const allTravelData = [
     arrivalCity: "İzmir",
     date: "2023-09-01",
     availableSeats: 14,
-    price: 100,
+    price: 435,
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ export const allTravelData = [
     arrivalCity: "Antalya",
     date: "2023-09-01",
     availableSeats: 16,
-    price: 150,
+    price: 387,
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ export const allTravelData = [
     arrivalCity: "Antalya",
     date: "2023-09-01",
     availableSeats: 7,
-    price: 120,
+    price: 477,
   },
   {
     id: 8,
@@ -61,6 +61,6 @@ export const allTravelData = [
     arrivalCity: "İzmir",
     date: "2023-09-01",
     availableSeats: 13,
-    price: 110,
+    price: 365,
   },
 ];

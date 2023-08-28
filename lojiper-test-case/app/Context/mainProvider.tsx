@@ -28,6 +28,8 @@ interface MainContextProps {
   setUserSearchQuery: React.Dispatch<React.SetStateAction<UserSearchQuery>>;
   userGender: string;
   setUserGender: React.Dispatch<React.SetStateAction<string>>;
+  totalPrice: number;
+  setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface MainProviderProps {
@@ -47,12 +49,15 @@ export const MainContext = createContext<MainContextProps>({
   setUserSearchQuery: () => {},
   userGender: "",
   setUserGender: () => {},
+  totalPrice: 0,
+  setTotalPrice: () => {},
 });
 
 export const MainProvider: React.FC<MainProviderProps> = ({ children }) => {
   const [isLogin, setIsLogin] = useState(false);
   const [userName, setUserName] = useState("");
   const [userGender, setUserGender] = useState("");
+  const [totalPrice, setTotalPrice] = useState(0);
   const [userSearchQuery, setUserSearchQuery] = useState<UserSearchQuery>({
     departCity: "",
     arrivalCity: "",
@@ -68,6 +73,8 @@ export const MainProvider: React.FC<MainProviderProps> = ({ children }) => {
     setUserSearchQuery,
     userGender,
     setUserGender,
+    totalPrice,
+    setTotalPrice,
   };
 
   return (
