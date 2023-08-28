@@ -20,8 +20,9 @@ const SeatSelectionPage: React.FC = () => {
   const id = searchParams.get("id");
   const departCity = searchParams.get("depart");
   const arrivalCity = searchParams.get("arrival");
+  const { userGender } = useContext(MainContext);
 
-  const { userSearchQuery } = useContext(MainContext);
+  const { userSearchQuery, userName } = useContext(MainContext);
   const [searchResults, setSearchResults] = useState<TravelData | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const [newSeatData, setNewSeatData] = useState<BusSeatData | undefined>(
@@ -79,13 +80,83 @@ const SeatSelectionPage: React.FC = () => {
   const handleSeatClick = (row: number, col: number) => {
     const seat = `${row}${col}`;
 
+    console.log(userGender);
     if (
       (busLayout[row][col] === "male" || busLayout[row][col] === "female") &&
       !selectedSeats.includes(seat)
     ) {
       return;
     }
+    //karşı cinsler logic
+    if (
+      busLayout[row][0] === "male" &&
+      seat.charAt(1) === "1" &&
+      userGender === "female"
+    ) {
+      toast.error("Karşı cinsler yanyana koltuk alamaz");
+      return;
+    }
+    if (
+      busLayout[row][0] === "female" &&
+      seat.charAt(1) === "1" &&
+      userGender === "male"
+    ) {
+      toast.error("Karşı cinsler yanyana koltuk alamaz");
+      return;
+    }
 
+    if (
+      busLayout[row][1] === "male" &&
+      seat.charAt(1) === "0" &&
+      userGender === "female"
+    ) {
+      toast.error("Karşı cinsler yanyana koltuk alamaz");
+      return;
+    }
+    if (
+      busLayout[row][1] === "female" &&
+      seat.charAt(1) === "0" &&
+      userGender === "male"
+    ) {
+      toast.error("Karşı cinsler yanyana koltuk alamaz");
+      return;
+    }
+    //otobüs sağ tarafı logic
+    if (
+      busLayout[row][2] === "male" &&
+      seat.charAt(1) === "3" &&
+      userGender === "female"
+    ) {
+      toast.error("Karşı cinsler yanyana koltuk alamaz");
+      return;
+    }
+    if (
+      busLayout[row][2] === "female" &&
+      seat.charAt(1) === "3" &&
+      userGender === "male"
+    ) {
+      toast.error("Karşı cinsler yanyana koltuk alamaz");
+      return;
+    }
+
+    if (
+      busLayout[row][3] === "male" &&
+      seat.charAt(1) === "2" &&
+      userGender === "female"
+    ) {
+      toast.error("Karşı cinsler yanyana koltuk alamaz");
+      return;
+    }
+    if (
+      busLayout[row][3] === "female" &&
+      seat.charAt(1) === "2" &&
+      userGender === "male"
+    ) {
+      toast.error("Karşı cinsler yanyana koltuk alamaz");
+      return;
+    }
+
+    ////////
     if (selectedSeats.length >= 5 && !selectedSeats.includes(seat)) {
       toast.error("En fazla 5 koltuk seçebilirsiniz!");
       return;
@@ -106,6 +177,12 @@ const SeatSelectionPage: React.FC = () => {
   return (
     <div className="seat-selection-page">
       <h1>Sefer Detayları ve Fiyat</h1>
+      <Link href="/">Anasayfa</Link>
+      <p>
+        Merhaba {userName}
+        {userGender === "male" ? <p>{"(e)"}</p> : <p>{"(k)"}</p>}
+      </p>
+      <ToastContainer />
       <h2>
         {departCity} - {arrivalCity} Seferi
       </h2>

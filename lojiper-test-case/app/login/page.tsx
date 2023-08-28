@@ -53,7 +53,8 @@ const LoginForm: React.FC<LoginFormProps> = ({
 };
 
 const Login = () => {
-  const { isLogin, setIsLogin, setUserName } = useContext(MainContext);
+  const { isLogin, setIsLogin, setUserName, setUserGender } =
+    useContext(MainContext);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -68,7 +69,8 @@ const Login = () => {
       setError,
       setIsLoading,
       setIsLogin,
-      setUserName
+      setUserName,
+      setUserGender
     );
   };
 

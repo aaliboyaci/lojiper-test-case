@@ -14,7 +14,8 @@ export async function validateUserLogin(
   setError: React.Dispatch<React.SetStateAction<string>>,
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   setIsLogin: React.Dispatch<React.SetStateAction<boolean>>,
-  setUserName: React.Dispatch<React.SetStateAction<string>>
+  setUserName: React.Dispatch<React.SetStateAction<string>>,
+  setUserGender: React.Dispatch<React.SetStateAction<string>>
 ): Promise<User | undefined> {
   try {
     setIsLoading(true);
@@ -28,6 +29,7 @@ export async function validateUserLogin(
       setError("");
       setIsLogin(true);
       setUserName(user.firstName);
+      setUserGender(user.gender);
       return user;
     } else {
       setIsLoading(false);
