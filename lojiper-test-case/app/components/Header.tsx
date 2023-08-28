@@ -2,9 +2,19 @@ import React, { useContext } from "react";
 import Link from "next/link";
 import { MainContext } from "../Context/mainProvider";
 import "./Header.css";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
-  const { isLogin, userName } = useContext(MainContext);
+  const { isLogin, userName, setIsLogin, setUserName, setUserGender } =
+    useContext(MainContext);
+  const router = useRouter();
+
+  const handleLogOut = () => {
+    setIsLogin(false);
+    setUserGender("");
+    setUserName("");
+    router.push("/");
+  };
 
   return (
     <header className="header">
@@ -16,7 +26,10 @@ const Header = () => {
         </div>
         <div className="nav">
           {isLogin ? (
-            <span>Hoşgeldin, {userName}</span>
+            <>
+              <span>Hoşgeldin, {userName} </span>
+              <button onClick={handleLogOut}> Çıkış Yap</button>
+            </>
           ) : (
             <>
               <Link href="/login">Giriş Yap</Link>
