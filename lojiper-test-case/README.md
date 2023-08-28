@@ -10,6 +10,16 @@ This document contains the details and requirements of the "Lojiper Web Applicat
 
 The objective of this project is to develop a bus ticket sales application using NextJS, TypeScript, and Context API. The application enables users to log in/register and then search for bus trips, select seats, and purchase tickets for the selected trips.
 
+## Live Demo
+
+You can test the live demo from the link below.
+
+<a href="https://lojiper-test-case.vercel.app/" target="_blank">LIVE DEMO LINK</a>
+
+`https://lojiper-test-case.vercel.app/`
+
+It has been deployed by using Vercel.
+
 ## Technical Details
 
 - Technologies Used: React (18.2.0), NextJS (13.4.19), TypeScript, Context API, NextJS API Routes, ESLint (8.47.0), Axios (1.4.0)

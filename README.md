@@ -10,6 +10,16 @@ Bu döküman, Lojiper için hazırlanan "Lojiper Web Uygulama Test Case" adlı t
 
 Bu projenin amacı, NextJS, TypeScript ve Context API kullanarak otobüs bilet satış uygulaması geliştirmektir. Uygulama, kullanıcıların giriş yapması / kayıt olması ve ardından, otobüs seferlerini aratması ve seçtiği seferler için istediği koltukları seçerek bilet satın almasına olanak tanır.
 
+## Canlı Demo
+
+Uygulamanın canlı halini aşağıdaki linkten test edebilirsiniz.
+
+<a href="https://lojiper-test-case.vercel.app/" target="_blank">CANLI DEMO LINK</a>
+
+`https://lojiper-test-case.vercel.app/`
+
+Vercel üzerinden deploy edilmiştir.
+
 ## Teknik Detaylar
 
 - Kullanılan Teknolojiler: React (18.2.0), NextJS (13.4.19), TypeScript, Context API, NextJS API Routes, ESLint (8.47.0), Axios (1.4.0)
