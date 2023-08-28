@@ -16,6 +16,7 @@ import { MainContext } from "../Context/mainProvider";
 import { TravelData } from "../Interfaces/uiRelatedTypes";
 import handleSeatClick from "./components/handeSeatClick";
 import "../styles/Home.css";
+import Header from "../components/Header";
 
 const SeatSelectionPage: React.FC = () => {
   const searchParams = useSearchParams();
@@ -97,65 +98,67 @@ const SeatSelectionPage: React.FC = () => {
   };
 
   return (
-    <div className="seat-selection-page">
-      <h1>Sefer Detayları ve Fiyat</h1>
-      <Link href="/">Anasayfa</Link>
-      <p>
-        Merhaba {userName}
-        {userGender === "male" ? <p>{"(e)"}</p> : <p>{"(k)"}</p>}
-      </p>
-      <ToastContainer />
-      <h2>
-        {departCity} - {arrivalCity} Seferi
-      </h2>
-      <div className="bus-layout">
-        {busLayout.map((row, rowIndex) => (
-          <div key={rowIndex} className="bus-row">
-            {row.map((passenger, colIndex) => (
-              <div
-                key={colIndex}
-                className={`bus-seat ${
-                  selectedSeats.includes(`${rowIndex}${colIndex}`)
-                    ? "selected"
-                    : passenger === "male"
-                    ? "occupied-male"
-                    : passenger === "female"
-                    ? "occupied-female"
-                    : ""
-                } ${colIndex === 1 ? "gapBetween" : ""}`}
-                onClick={() => handleSeatClickWrapper(rowIndex, colIndex)}
-              >
-                {selectedSeats.includes(`${rowIndex}${colIndex}`)
-                  ? "X"
-                  : passenger
-                  ? passenger === "male"
-                    ? "E"
-                    : "K"
-                  : `${rowIndex * numCols + colIndex + 1}`}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
+    <div className="main">
+      <div className="seat-selection-page">
+        <Header />
+        <h1>Sefer Detayları ve Fiyat</h1>
+        <p>
+          Merhaba {userName}
+          {userGender === "male" ? <p>{"(e)"}</p> : <p>{"(k)"}</p>}
+        </p>
+        <ToastContainer />
+        <h2>
+          {departCity} - {arrivalCity} Seferi
+        </h2>
+        <div className="bus-layout">
+          {busLayout.map((row, rowIndex) => (
+            <div key={rowIndex} className="bus-row">
+              {row.map((passenger, colIndex) => (
+                <div
+                  key={colIndex}
+                  className={`bus-seat ${
+                    selectedSeats.includes(`${rowIndex}${colIndex}`)
+                      ? "selected"
+                      : passenger === "male"
+                      ? "occupied-male"
+                      : passenger === "female"
+                      ? "occupied-female"
+                      : ""
+                  } ${colIndex === 1 ? "gapBetween" : ""}`}
+                  onClick={() => handleSeatClickWrapper(rowIndex, colIndex)}
+                >
+                  {selectedSeats.includes(`${rowIndex}${colIndex}`)
+                    ? "X"
+                    : passenger
+                    ? passenger === "male"
+                      ? "E"
+                      : "K"
+                    : `${rowIndex * numCols + colIndex + 1}`}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
 
-      <div className="total-price">
-        Toplam Ücret: {calculateTotalPrice()} TL
+        <div className="total-price">
+          Toplam Ücret: {calculateTotalPrice()} TL
+        </div>
+        <Link href="/payment">
+          <button
+            className="continue-button"
+            onClick={() =>
+              setTotalPrice(
+                searchResults?.price
+                  ? searchResults.price * selectedSeats.length
+                  : 0
+              )
+            }
+          >
+            Devam Et
+          </button>
+        </Link>
+        <ToastContainer />
       </div>
-      <Link href="/payment">
-        <button
-          className="continue-button"
-          onClick={() =>
-            setTotalPrice(
-              searchResults?.price
-                ? searchResults.price * selectedSeats.length
-                : 0
-            )
-          }
-        >
-          Devam Et
-        </button>
-      </Link>
-      <ToastContainer />
     </div>
   );
 };
