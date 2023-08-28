@@ -6,16 +6,33 @@ import { fetchTravelData } from "@/business-logic/fetchTravelData";
 import { TravelData } from "../Interfaces/uiRelatedTypes";
 import Header from "../components/Header";
 import "../styles/Home.css";
+import { fetchBusSeatData } from "@/business-logic/fetchBusSeatData";
+import { BusSeatData } from "../api/travelData/busSeatData/busSeatData";
 
 const SearchResultsPage = () => {
   const { isLogin, userName, userSearchQuery } = useContext(MainContext);
   const [searchResults, setSearchResults] = useState<TravelData | null>(null);
+  const [seatInfo, setSeatInfo] = useState<number | null>(null);
 
   useEffect(() => {
     fetchTravelData(userSearchQuery)
       .then((results) => setSearchResults(results || null))
       .catch((error) => console.error("Hata:", error));
   }, []);
+
+  useEffect(() => {
+    fetchBusSeatData(Number(searchResults?.id))
+      .then((results) => {
+        console.log(results);
+        const nullCount = results?.filter(
+          (seat: BusSeatData) => seat.passengerGender === "null"
+        ).length;
+        setSeatInfo(nullCount);
+      })
+      .catch((error) => {
+        console.error("Hata:", error);
+      });
+  }, [searchResults]);
 
   const renderResults = () => (
     <div className="resultsContainer">
@@ -27,12 +44,13 @@ const SearchResultsPage = () => {
       <hr />
       {searchResults ? (
         <div className="searchResult">
-          <p>sefer no: {searchResults.id}</p>
-          <p>sefer tarihi: {searchResults.date}</p>
+          <p>Sefer No: {searchResults.id}</p>
+          <p>Sefer Tarihi: {searchResults.date}</p>
           <p>
-            rota: {searchResults.departCity} &gt; {searchResults.arrivalCity}
+            Rota: {searchResults.departCity} &gt; {searchResults.arrivalCity}
           </p>
-          <p>bilet fiyatı: {searchResults.price} ₺</p>
+          <p>Bilet Fiyatı: {searchResults.price} ₺</p>
+          <p>Boş Koltuk Sayısı: {seatInfo}</p>
           <p>
             {isLogin ? (
               <Link
