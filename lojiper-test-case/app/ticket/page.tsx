@@ -14,6 +14,7 @@ import Loading from "../components/Loading";
 import { fetchTravelData } from "@/business-logic/fetchTravelData";
 import { MainContext } from "../Context/mainProvider";
 import { TravelData } from "../Interfaces/uiRelatedTypes";
+import handleSeatClick from "./components/handeSeatClick";
 
 const SeatSelectionPage: React.FC = () => {
   const searchParams = useSearchParams();
@@ -21,7 +22,6 @@ const SeatSelectionPage: React.FC = () => {
   const departCity = searchParams.get("depart");
   const arrivalCity = searchParams.get("arrival");
   const { userGender } = useContext(MainContext);
-
   const { userSearchQuery, userName } = useContext(MainContext);
   const [searchResults, setSearchResults] = useState<TravelData | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
@@ -55,10 +55,8 @@ const SeatSelectionPage: React.FC = () => {
   }
 
   const seatData = newSeatData;
-
   const numRows = 5;
   const numCols = 4;
-
   const busLayout: (string | null)[][] = Array.from({ length: numRows }, () =>
     Array(numCols).fill(null)
   );
@@ -77,96 +75,15 @@ const SeatSelectionPage: React.FC = () => {
     }
   );
 
-  const handleSeatClick = (row: number, col: number) => {
-    const seat = `${row}${col}`;
-
-    console.log(userGender);
-    if (
-      (busLayout[row][col] === "male" || busLayout[row][col] === "female") &&
-      !selectedSeats.includes(seat)
-    ) {
-      return;
-    }
-    //karşı cinsler logic
-    if (
-      busLayout[row][0] === "male" &&
-      seat.charAt(1) === "1" &&
-      userGender === "female"
-    ) {
-      toast.error("Karşı cinsler yanyana koltuk alamaz");
-      return;
-    }
-    if (
-      busLayout[row][0] === "female" &&
-      seat.charAt(1) === "1" &&
-      userGender === "male"
-    ) {
-      toast.error("Karşı cinsler yanyana koltuk alamaz");
-      return;
-    }
-
-    if (
-      busLayout[row][1] === "male" &&
-      seat.charAt(1) === "0" &&
-      userGender === "female"
-    ) {
-      toast.error("Karşı cinsler yanyana koltuk alamaz");
-      return;
-    }
-    if (
-      busLayout[row][1] === "female" &&
-      seat.charAt(1) === "0" &&
-      userGender === "male"
-    ) {
-      toast.error("Karşı cinsler yanyana koltuk alamaz");
-      return;
-    }
-    //otobüs sağ tarafı logic
-    if (
-      busLayout[row][2] === "male" &&
-      seat.charAt(1) === "3" &&
-      userGender === "female"
-    ) {
-      toast.error("Karşı cinsler yanyana koltuk alamaz");
-      return;
-    }
-    if (
-      busLayout[row][2] === "female" &&
-      seat.charAt(1) === "3" &&
-      userGender === "male"
-    ) {
-      toast.error("Karşı cinsler yanyana koltuk alamaz");
-      return;
-    }
-
-    if (
-      busLayout[row][3] === "male" &&
-      seat.charAt(1) === "2" &&
-      userGender === "female"
-    ) {
-      toast.error("Karşı cinsler yanyana koltuk alamaz");
-      return;
-    }
-    if (
-      busLayout[row][3] === "female" &&
-      seat.charAt(1) === "2" &&
-      userGender === "male"
-    ) {
-      toast.error("Karşı cinsler yanyana koltuk alamaz");
-      return;
-    }
-
-    ////////
-    if (selectedSeats.length >= 5 && !selectedSeats.includes(seat)) {
-      toast.error("En fazla 5 koltuk seçebilirsiniz!");
-      return;
-    }
-
-    if (selectedSeats.includes(seat)) {
-      setSelectedSeats(selectedSeats.filter((s) => s !== seat));
-    } else {
-      setSelectedSeats([...selectedSeats, seat]);
-    }
+  const handleSeatClickWrapper = (row: number, col: number) => {
+    handleSeatClick(
+      row,
+      col,
+      busLayout,
+      userGender,
+      selectedSeats,
+      setSelectedSeats
+    );
   };
 
   const calculateTotalPrice = () => {
@@ -201,7 +118,7 @@ const SeatSelectionPage: React.FC = () => {
                     ? "occupied-female"
                     : ""
                 } ${colIndex === 1 ? "gapBetween" : ""}`}
-                onClick={() => handleSeatClick(rowIndex, colIndex)}
+                onClick={() => handleSeatClickWrapper(rowIndex, colIndex)}
               >
                 {selectedSeats.includes(`${rowIndex}${colIndex}`)
                   ? "X"
