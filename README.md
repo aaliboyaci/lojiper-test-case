@@ -27,10 +27,14 @@ Bu projenin amacı, NextJS, TypeScript ve Context API kullanarak otobüs bilet s
 - Hatalı giriş durumunda hata mesajı alır.
 - İlk defa giriş yapan kullanıcılar kayıt ol sayfasına yönlendirilebilir.
 
+https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/login.png
+
 ### 2. Kayıt Ol Sayfası
 
 - Kullanıcı bilgileri (e-posta, şifre, ad, soyad, cinsiyet, doğum tarihi) girilebilir.
 - Başarılı kayıt olma durumunda login sayfasına yönlendirilir.
+
+https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/register.png
 
 ### 3. Anasayfa
 
@@ -39,6 +43,8 @@ Bu projenin amacı, NextJS, TypeScript ve Context API kullanarak otobüs bilet s
 - Ara butonu ile sorguya uygun seferler listelenir.
 - Uygun sefer yoksa uyarı verilir.
 - Seferlerin bilgileri (kalkış- varış şehirleri, tarih, boş koltuk sayısı, fiyat) görüntülenir.
+
+https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/homepage.png
 
 ### 4. Bilet Satış Sayfası
 
@@ -50,13 +56,19 @@ Bu projenin amacı, NextJS, TypeScript ve Context API kullanarak otobüs bilet s
 - Koltuk seçimleri yapıldıkça toplam tutar alanı güncellenir.
 - Eğer kullanıcı koltuk seçmediyse, ödeme sayfasına geçemez bu durumda uyarı mesajı verilir.
 
+https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/ticketpage.png
+https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/ticketpage-warning.png
+
 ### 5. Ödeme Sayfası
 
 - Toplam tutar gösterilir.
 - Ödeme formu doldurulur ve onaylanır.
 - Eğer form bilgileri eksik ise uyarı verilir.
-- Ödeme başarılı ise spinner ile beklenir. (user-case için başarısız durum istenmediği için böyle bir senaryo hazırlanmamıştır.
+- Ödeme başarılı ise spinner ile beklenir. (user-case için başarısız durum istenmediği için böyle bir senaryo hazırlanmamıştır.)
 - Ödeme başarılı durumunda anasayfaya dönüş butonu ve mesaj görüntülenir.
+
+https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/paymentpage.png
+https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/payment-success.png
 
 ## Kurulum ve Çalıştırma
 
