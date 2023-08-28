@@ -33,8 +33,7 @@ Bu projenin amacı, NextJS, TypeScript ve Context API kullanarak otobüs bilet s
 
 - Kullanıcı bilgileri (e-posta, şifre, ad, soyad, cinsiyet, doğum tarihi) girilebilir.
 - Başarılı kayıt olma durumunda login sayfasına yönlendirilir.
-  <img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/register.png
-  " alt="register" width="600">
+  <img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/register.png  " alt="register" width="600">
 
 ### 3. Anasayfa
 
@@ -44,8 +43,7 @@ Bu projenin amacı, NextJS, TypeScript ve Context API kullanarak otobüs bilet s
 - Uygun sefer yoksa uyarı verilir.
 - Seferlerin bilgileri (kalkış- varış şehirleri, tarih, boş koltuk sayısı, fiyat) görüntülenir.
 
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/homepage.png
-" alt="home" width="600">
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/homepage.png" alt="home" width="600">
 
 ### 4. Bilet Satış Sayfası
 
@@ -57,10 +55,8 @@ Bu projenin amacı, NextJS, TypeScript ve Context API kullanarak otobüs bilet s
 - Koltuk seçimleri yapıldıkça toplam tutar alanı güncellenir.
 - Eğer kullanıcı koltuk seçmediyse, ödeme sayfasına geçemez bu durumda uyarı mesajı verilir.
 
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/ticketpage.png
-" alt="ticket" width="600">
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/ticketpage-warning.png
-" alt="ticket-warning" width="600">
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/ticketpage.png" alt="ticket" width="600">
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/ticketpage-warning.png" alt="ticket-warning" width="600">
 
 ### 5. Ödeme Sayfası
 
@@ -70,10 +66,8 @@ Bu projenin amacı, NextJS, TypeScript ve Context API kullanarak otobüs bilet s
 - Ödeme başarılı ise spinner ile beklenir. (user-case için başarısız durum istenmediği için böyle bir senaryo hazırlanmamıştır.)
 - Ödeme başarılı durumunda anasayfaya dönüş butonu ve mesaj görüntülenir.
 
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/paymentpage.png
-" alt="payment" width="600">
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/payment-success.png
-" alt="payment-succesful" width="600">
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/paymentpage.png" alt="payment" width="600">
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/payment-success.png" alt="payment-succesful" width="600">
 
 ## Kurulum ve Çalıştırma
 
