@@ -62,8 +62,9 @@ const SearchResultsPage = () => {
             {isLogin ? (
               <Link
                 href={`/ticket?id=${searchResults.id}&depart=${searchResults.departCity}&arrival=${searchResults.arrivalCity}`}
+                style={{ color: "green" }}
               >
-                Boş koltukları görüntüle
+                <b>Boş koltukları görüntüle</b>
               </Link>
             ) : (
               <>
