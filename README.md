@@ -12,7 +12,7 @@ Bu projenin amacı, NextJS, TypeScript ve Context API kullanarak otobüs bilet s
 
 ## Canlı Demo
 
-Uygulamanın canlı halini aşağıdaki linkten test edebilirsiniz.
+Uygulamanın canlı halini aşağıdaki linkten test edebilirsiniz. Bu dökümanın ilerleyen kısımlarında örnek sefer ve kullanıcı verileri verilmiştir. Test amaçlı o verileri takip edebilirsiniz
 
 <a href="https://lojiper-test-case.vercel.app/" target="_blank">CANLI DEMO LINK</a>
 
@@ -80,6 +80,35 @@ Vercel üzerinden deploy edilmiştir.
 
 <img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/paymentpage.png" alt="payment" width="600">
 <img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/payment-success.png" alt="payment-succesful" width="600">
+
+## Örnek Kullanıcı Verileri
+
+Toplamda 3 adet ön tanımlı kullanıcı verisi oluşturuldu. Bu veriler ile kayıt olunmadan uygulamaya giriş yapılıp test edilebilir.
+
+Kullanıcı adı: ahmety
+Parola: 12345
+
+Kullanıcı adı: elifk
+Parola: 67890
+
+Kullanıcı adı: cemoz
+Parola: 43210
+
+## Örnek Sefer Verileri
+
+Toplamda 8 adet örnek sefer verisi oluşturuldu. Bu tarihler ve destinasyonlar dışındaki sorgularda kullanıcı “Uygun Sefer Bulunamadı” mesajıyla karşılanır.
+
+31 Ağustos 2023
+İstanbul > İzmir
+İstanbul > Antalya
+Ankara > İzmir
+Ankara > Antalya
+
+1 Eylül 2023
+İstanbul > İzmir
+İstanbul > Antalya
+Ankara > İzmir
+Ankara > Antalya
 
 ## Kurulum ve Çalıştırma
 

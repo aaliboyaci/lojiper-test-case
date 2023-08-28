@@ -12,7 +12,7 @@ The objective of this project is to develop a bus ticket sales application using
 
 ## Live Demo
 
-You can test the live demo from the link below.
+You can test the live demo from the link below. In the subsequent sections of this document, sample journey and user data have been provided. You can follow those data for testing purposes.
 
 <a href="https://lojiper-test-case.vercel.app/" target="_blank">LIVE DEMO LINK</a>
 
@@ -78,6 +78,35 @@ It has been deployed by using Vercel.
 - In case of a successful payment, a "Return to Homepage" button and a success message are shown.
 
 <img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/paymentpage.png" alt="payment" width="600"> <img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/payment-success.png" alt="payment-successful" width="600">
+
+## Example User Data
+
+A total of 3 predefined user data have been created. With these data, you can log in to the application without registering and test it.
+
+Username: ahmety
+Password: 12345
+
+Username: elifk
+Password: 67890
+
+Username: cemoz
+Password: 43210
+
+## Example Travel Data
+
+A total of 8 sample travel data have been generated. For queries outside of these dates and destinations, users will be met with the message "Uygun sefer bulunamadı"
+
+31 August 2023
+İstanbul > İzmir
+İstanbul > Antalya
+Ankara > İzmir
+Ankara > Antalya
+
+1 September 2023
+İstanbul > İzmir
+İstanbul > Antalya
+Ankara > İzmir
+Ankara > Antalya
 
 ## Installation and Running
 
