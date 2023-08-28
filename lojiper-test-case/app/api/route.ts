@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { allUserData } from "./allUserData";
 
 export async function GET(request: NextRequest) {
-  // Do whatever you want
   return NextResponse.json(allUserData, { status: 200 });
 }
 

@@ -1,3 +1,5 @@
+//kullanıcı girişi validation testleri için kullanmak adına yazdığım 3 örnek kullanıcı
+
 export const allUserData = [
   {
     email: "ahmet.yilmaz@example.com",

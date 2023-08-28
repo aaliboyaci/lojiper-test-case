@@ -3,13 +3,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  BusSeatData,
-  busSeatData,
-} from "../api/travelData/busSeatData/busSeatData";
+import { BusSeatData } from "../api/travelData/busSeatData/busSeatData";
 import { fetchBusSeatData } from "@/business-logic/fetchBusSeatData";
 import "./ticketStyle.css";
-import Link from "next/link";
 import Loading from "../components/Loading";
 import { fetchTravelData } from "@/business-logic/fetchTravelData";
 import { MainContext } from "../Context/mainProvider";
@@ -31,16 +27,16 @@ const SeatSelectionPage: React.FC = () => {
   const [newSeatData, setNewSeatData] = useState<BusSeatData | undefined>(
     undefined
   );
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setSelectedSeats([]);
     fetchBusSeatData(Number(id))
       .then((results) => {
-        console.log(results);
         setNewSeatData(results || undefined);
       })
       .catch((error) => {
-        console.error("Hata:", error);
+        setError("Bir Hata oluştu, lütfen tekrar deneyiniz");
       });
   }, [id]);
 
@@ -50,7 +46,7 @@ const SeatSelectionPage: React.FC = () => {
         setSearchResults(results || null);
       })
       .catch((error) => {
-        console.error("Hata:", error);
+        setError("Bir Hata oluştu, lütfen tekrar deneyiniz");
       });
   }, []);
 
@@ -95,8 +91,6 @@ const SeatSelectionPage: React.FC = () => {
 
   const calculateTotalPrice = () => {
     const basePrice = searchResults?.price;
-    console.log(`seçilen koltuk sayısı=`);
-    console.log(selectedSeats.length);
     return basePrice ? basePrice * selectedSeats.length : null;
   };
 
@@ -110,6 +104,7 @@ const SeatSelectionPage: React.FC = () => {
           {userGender === "male" ? <p>{"(e)"}</p> : <p>{"(k)"}</p>}
         </p>
         <ToastContainer />
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <h2>
           {departCity} - {arrivalCity} Seferi
         </h2>

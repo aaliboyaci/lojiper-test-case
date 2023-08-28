@@ -1,8 +1,5 @@
 import axios from "axios";
-import {
-  BusSeatData,
-  Seat,
-} from "@/app/api/travelData/busSeatData/busSeatData";
+import { BusSeatData } from "@/app/api/travelData/busSeatData/busSeatData";
 
 export function getBusSeatData(): Promise<BusSeatData[]> {
   return axios
@@ -14,8 +11,7 @@ export function getBusSeatData(): Promise<BusSeatData[]> {
         return [];
       }
     })
-    .catch((error) => {
-      console.error("Veri alımı hatası:", error);
+    .catch(() => {
       return [];
     });
 }

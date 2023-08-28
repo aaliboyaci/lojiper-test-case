@@ -15,19 +15,19 @@ const SearchResultsPage = () => {
   const [searchResults, setSearchResults] = useState<TravelData | null>(null);
   const [seatInfo, setSeatInfo] = useState<number | null>(null);
   const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setIsLoadingSearch(true);
 
     fetchTravelData(userSearchQuery)
       .then((results) => setSearchResults(results || null))
-      .catch((error) => console.error("Hata:", error));
+      .catch((error) => setError("Bir Hata oluştu, lütfen tekrar deneyiniz"));
   }, []);
 
   useEffect(() => {
     fetchBusSeatData(Number(searchResults?.id))
       .then((results) => {
-        console.log(results);
         const nullCount = results?.filter(
           (seat: BusSeatData) => seat.passengerGender === "null"
         ).length;
@@ -35,12 +35,11 @@ const SearchResultsPage = () => {
         setIsLoadingSearch(false);
       })
       .catch((error) => {
-        console.error("Hata:", error);
+        setError("Bir Hata oluştu, lütfen tekrar deneyiniz");
         setIsLoadingSearch(false);
       });
   }, [searchResults]);
 
-  console.log(isLoadingSearch);
   const renderResults = () => (
     <div className="resultsContainer">
       <h2>Arama Sonuçları</h2>
@@ -81,7 +80,10 @@ const SearchResultsPage = () => {
           <Loading />
         </div>
       ) : (
-        <h2>Uygun Sefer Bulunumadı</h2>
+        <>
+          <h2>Uygun Sefer Bulunumadı</h2>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+        </>
       )}
     </div>
   );

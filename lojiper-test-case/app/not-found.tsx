@@ -1,10 +1,11 @@
 import Link from "next/link";
+import "../app/styles/Home.css";
 
 export default function notFound() {
   return (
-    <>
-      <h1>404 - Page Not Found</h1>
-      <Link href="/"> home</Link>
-    </>
+    <div className="main">
+      <h1>404 - Sayfa Bulunamadı</h1>
+      <Link href="/"> Anasayfa</Link>
+    </div>
   );
 }

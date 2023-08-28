@@ -16,15 +16,12 @@ export function fetchTravelData(
       });
 
       if (matchingTravel) {
-        console.log("Eşleşen sefer:", matchingTravel);
         return matchingTravel;
       } else {
-        console.log("Eşleşen sefer bulunamadı");
         return null;
       }
     })
-    .catch((error) => {
-      console.error("Veri alımı hatası:", error);
+    .catch(() => {
       return null;
     });
 }

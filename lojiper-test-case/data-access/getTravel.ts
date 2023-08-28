@@ -1,7 +1,5 @@
 import axios from "axios";
-import { TravelData, User, currentUser } from "@/app/Interfaces/uiRelatedTypes";
-import { MainContext, UserSearchQuery } from "@/app/Context/mainProvider";
-import { useContext } from "react";
+import { TravelData } from "@/app/Interfaces/uiRelatedTypes";
 
 export function getTravelData(): Promise<TravelData[]> {
   return axios
@@ -13,8 +11,7 @@ export function getTravelData(): Promise<TravelData[]> {
         return [];
       }
     })
-    .catch((error) => {
-      console.error("Veri alımı hatası:", error);
+    .catch(() => {
       return [];
     });
 }

@@ -1,3 +1,4 @@
+//8 adet sefer için hazırladığım başlangıç temel verileri
 export const allTravelData = [
   {
     id: 1,

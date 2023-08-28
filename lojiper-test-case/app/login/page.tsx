@@ -2,11 +2,10 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import Loading from "../components/Loading";
 import { validateUserLogin } from "../../business-logic/userValidation";
 import { MainContext } from "../Context/mainProvider";
-import { LoginFormProps, User } from "../Interfaces/uiRelatedTypes";
+import { LoginFormProps } from "../Interfaces/uiRelatedTypes";
 import Header from "../components/Header";
 import "../styles/Home.css";
 

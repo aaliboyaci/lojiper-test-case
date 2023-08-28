@@ -4,7 +4,7 @@ import { MainContext } from "../Context/mainProvider";
 import "./Header.css";
 
 const Header = () => {
-  const { isLogin, userName } = useContext(MainContext); //cartItems ekle
+  const { isLogin, userName } = useContext(MainContext);
 
   return (
     <header className="header">

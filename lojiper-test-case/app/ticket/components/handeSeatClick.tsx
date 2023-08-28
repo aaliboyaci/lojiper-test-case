@@ -17,7 +17,7 @@ const handleSeatClick = (
   ) {
     return;
   }
-  //karşı cinsler logic
+  //karşı cinsler oturamaz logic
   if (
     busLayout[row][0] === "male" &&
     seat.charAt(1) === "1" &&
@@ -51,7 +51,7 @@ const handleSeatClick = (
     toast.warn("Karşı cinsler yanyana koltuk alamaz");
     return;
   }
-  //otobüs sağ tarafı logic
+  //otobüs sağ tarafı için aynı logic
   if (
     busLayout[row][2] === "male" &&
     seat.charAt(1) === "3" &&
@@ -86,7 +86,8 @@ const handleSeatClick = (
     return;
   }
 
-  ////////
+  ////////cinsiyet logic sonu
+
   if (selectedSeats.length >= 5 && !selectedSeats.includes(seat)) {
     toast.error("En fazla 5 koltuk seçebilirsiniz!");
     return;

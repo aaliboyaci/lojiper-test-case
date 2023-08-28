@@ -1,14 +1,9 @@
 "use client";
 import React, { useContext, useState } from "react";
 import "../styles/Home.css";
-import Link from "next/link";
 import { MainContext } from "../Context/mainProvider";
-import {
-  showToastFail,
-  showToastSuccess,
-} from "../register/components/ShowToast";
+import { showToastFail } from "../register/components/ShowToast";
 import { ToastContainer } from "react-toastify";
-import router from "next/router";
 import { useRouter } from "next/navigation";
 import Loading from "../components/Loading";
 import Header from "../components/Header";

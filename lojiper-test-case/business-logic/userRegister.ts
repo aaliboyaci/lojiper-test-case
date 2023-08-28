@@ -10,16 +10,14 @@ export const saveUser = async (user: User) => {
     );
 
     if (userWithSameUsername) {
-      console.error("Bu kullanıcı adı zaten mevcut.");
       return false;
     } else {
       const response = await axios.post("/api/", user);
       if (response.status === 201) {
-        console.log("Kullanıcı başarıyla kaydedildi:", response.data);
       }
       return true;
     }
   } catch (error) {
-    console.error("Kullanıcı kaydetme hatası:", error);
+    return false;
   }
 };

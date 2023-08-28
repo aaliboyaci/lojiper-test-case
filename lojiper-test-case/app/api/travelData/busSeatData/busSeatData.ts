@@ -10,6 +10,7 @@ export interface BusSeatData {
   [key: number]: Seat[];
 }
 
+//8 adet sefer için hazırladığım başlangıç koltuk verileri
 export const busSeatData: BusSeatData = {
   1: [
     { row: 0, col: 0, isOccupied: true, passengerGender: "male" },
