@@ -27,14 +27,14 @@ Bu projenin amacı, NextJS, TypeScript ve Context API kullanarak otobüs bilet s
 - Hatalı giriş durumunda hata mesajı alır.
 - İlk defa giriş yapan kullanıcılar kayıt ol sayfasına yönlendirilebilir.
 
-https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/login.png
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/login.png" alt="login" width="600">
 
 ### 2. Kayıt Ol Sayfası
 
 - Kullanıcı bilgileri (e-posta, şifre, ad, soyad, cinsiyet, doğum tarihi) girilebilir.
 - Başarılı kayıt olma durumunda login sayfasına yönlendirilir.
-
-https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/register.png
+  <img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/register.png
+  " alt="register" width="600">
 
 ### 3. Anasayfa
 
@@ -44,7 +44,8 @@ https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d
 - Uygun sefer yoksa uyarı verilir.
 - Seferlerin bilgileri (kalkış- varış şehirleri, tarih, boş koltuk sayısı, fiyat) görüntülenir.
 
-https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/homepage.png
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/homepage.png
+" alt="home" width="600">
 
 ### 4. Bilet Satış Sayfası
 
@@ -56,8 +57,10 @@ https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d
 - Koltuk seçimleri yapıldıkça toplam tutar alanı güncellenir.
 - Eğer kullanıcı koltuk seçmediyse, ödeme sayfasına geçemez bu durumda uyarı mesajı verilir.
 
-https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/ticketpage.png
-https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/ticketpage-warning.png
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/ticketpage.png
+" alt="ticket" width="600">
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/ticketpage-warning.png
+" alt="ticket-warning" width="600">
 
 ### 5. Ödeme Sayfası
 
@@ -67,8 +70,10 @@ https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d
 - Ödeme başarılı ise spinner ile beklenir. (user-case için başarısız durum istenmediği için böyle bir senaryo hazırlanmamıştır.)
 - Ödeme başarılı durumunda anasayfaya dönüş butonu ve mesaj görüntülenir.
 
-https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/paymentpage.png
-https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/payment-success.png
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/paymentpage.png
+" alt="payment" width="600">
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/payment-success.png
+" alt="payment-succesful" width="600">
 
 ## Kurulum ve Çalıştırma
 
