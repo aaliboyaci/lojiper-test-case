@@ -4,7 +4,6 @@ import "../styles/Home.css";
 import { useRouter } from "next/navigation";
 import Loading from "../components/Loading";
 import "./register.css";
-import "../components/SuccessRegister.css";
 import { saveUser } from "@/business-logic/userRegister";
 import FormInput from "./components/FormInput";
 import BirthdateInput from "./components/BirthdateInput";
