@@ -146,3 +146,5 @@ Ankara > Antalya
     - Proje başarıyla çalıştırıldığında, tarayıcınızı açın.
     - Adres çubuğuna `http://localhost:3000` yazın ve Enter tuşuna basın.
     - Bu adres, yerel sunucunuzda klonlanarak çalışan uygulamayı görüntüleyecektir.
+
+`Bu uygulama ve döküman Ali Boyacı tarafından, Lojiper Web Uygulama Test Case için yazılıp geliştirilmiştir. 2023 Ağustos 28`

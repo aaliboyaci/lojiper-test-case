@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React from "react";
 import Home from "./home/page";
 
 export default function App() {
@@ -11,3 +11,5 @@ export default function App() {
     </>
   );
 }
+
+// Bu uygulama Ali Boyacı tarafından, Lojiper Web Uygulama Test Case için yazılıp geliştirilmiştir.
