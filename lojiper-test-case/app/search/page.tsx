@@ -1,4 +1,3 @@
-"use client";
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { MainContext } from "../Context/mainProvider";
@@ -11,12 +10,8 @@ const SearchResultsPage = () => {
 
   useEffect(() => {
     fetchTravelData(userSearchQuery)
-      .then((results) => {
-        setSearchResults(results || null);
-      })
-      .catch((error) => {
-        console.error("Hata:", error);
-      });
+      .then((results) => setSearchResults(results || null))
+      .catch((error) => console.error("Hata:", error));
   }, []);
 
   const renderHeader = () => (
@@ -44,8 +39,10 @@ const SearchResultsPage = () => {
     <div className="resultsContainer">
       <h2>Arama Sonuçları</h2>
       <h3>Şunun için arama yaptınız:</h3>
-      <p>{`${userSearchQuery.departCity}'dan, ${userSearchQuery.arrivalCity}'a, ${userSearchQuery.inputDate} tarihinde uygun seferler`}</p>
-      <hr></hr>
+      <p>
+        {`${userSearchQuery.departCity}'dan, ${userSearchQuery.arrivalCity}'a, ${userSearchQuery.inputDate} tarihinde uygun seferler`}
+      </p>
+      <hr />
       {searchResults ? (
         <div className="searchResult">
           <p>sefer no: {searchResults.id}</p>
@@ -71,7 +68,9 @@ const SearchResultsPage = () => {
             )}
           </p>
         </div>
-      ) : null}
+      ) : (
+        <h2>Uygun Sefer bulunumadı</h2>
+      )}
     </div>
   );
 
