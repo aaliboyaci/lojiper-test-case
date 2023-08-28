@@ -9,8 +9,7 @@ import Loading from "../components/Loading";
 import Header from "../components/Header";
 
 const Home = () => {
-  const { isLogin, userName, setUserSearchQuery, userSearchQuery } =
-    useContext(MainContext);
+  const { setUserSearchQuery } = useContext(MainContext);
   const router = useRouter();
   const [departCity, setDepartCity] = useState("");
   const [arrivalCity, setArrivalCity] = useState("");
@@ -31,6 +30,7 @@ const Home = () => {
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);
+        console.clear();
         router.push("/search");
       }, 600);
     }
@@ -88,7 +88,7 @@ const Home = () => {
               value={inputDate}
               onChange={(e) => setInputDate(e.target.value)}
             />
-
+            <br></br>
             <button type="submit">Ara</button>
             {isLoading && <Loading />}
           </form>

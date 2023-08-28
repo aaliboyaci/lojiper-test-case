@@ -131,7 +131,6 @@ export default function Register() {
               { value: "", label: "Seçin" },
               { value: "female", label: "Kadın" },
               { value: "male", label: "Erkek" },
-              { value: "other", label: "Diğer" },
             ]}
           />
           <BirthdateInput
@@ -145,7 +144,7 @@ export default function Register() {
 
           {error && <p className="error-message">{error}</p>}
           <button type="submit" className="register-button">
-            Register
+            Kayıt Ol
           </button>
           {isLoading && <Loading />}
         </form>

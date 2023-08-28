@@ -101,7 +101,7 @@ const SeatSelectionPage: React.FC = () => {
         <h1>Sefer Detayları ve Fiyat</h1>
         <p>
           Merhaba {userName}
-          {userGender === "male" ? <p>{"(e)"}</p> : <p>{"(k)"}</p>}
+          {userGender === "male" ? <>{"(e)"}</> : <>{"(k)"}</>}
         </p>
         <ToastContainer />
         {error && <p style={{ color: "red" }}>{error}</p>}

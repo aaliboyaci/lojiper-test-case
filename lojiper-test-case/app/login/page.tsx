@@ -38,7 +38,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
         />
       </div>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <button type="submit">Login</button>
+      <button type="submit">Giriş Yap</button>
       {isLoading && <Loading />}
       <p>
         Hesabınız yok mu?{" "}

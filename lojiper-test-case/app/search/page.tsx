@@ -58,7 +58,7 @@ const SearchResultsPage = () => {
           </p>
           <p>Bilet Fiyatı: {searchResults.price} ₺</p>
           <p>Boş Koltuk Sayısı: {seatInfo}</p>
-          <p>
+          <>
             {isLogin ? (
               <Link
                 href={`/ticket?id=${searchResults.id}&depart=${searchResults.departCity}&arrival=${searchResults.arrivalCity}`}
@@ -74,7 +74,7 @@ const SearchResultsPage = () => {
                 </Link>
               </>
             )}
-          </p>
+          </>
         </div>
       ) : isLoadingSearch ? (
         <div className="main">

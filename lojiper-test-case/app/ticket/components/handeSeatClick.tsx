@@ -98,6 +98,7 @@ const handleSeatClick = (
   } else {
     setSelectedSeats([...selectedSeats, seat]);
   }
+  console.clear();
 };
 
 export default handleSeatClick;
