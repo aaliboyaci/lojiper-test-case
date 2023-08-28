@@ -13,6 +13,7 @@ The objective of this project is to develop a bus ticket sales application using
 ## Technical Details
 
 - Technologies Used: React (18.2.0), NextJS (13.4.19), TypeScript, Context API, NextJS API Routes, ESLint (8.47.0), Axios (1.4.0)
+- The application has been developed following the principles of a three-layer architecture in software design philosophy. This approach aims to ensure the separation of concerns, thereby facilitating potential enhancements, maintenance, and unit testing of the application. As a result, a foundation has been established that will facilitate ease of future development, maintenance, and unit testing while adhering to the "separation of concerns" principle.
 - Trip Data: Trip data is obtained using static JSON files as the basis and is fetched using NextJS API Routes and Axios.
 - Bus Layout: The bus layout consists of 2 rows of double seats. Occupied seats are indicated with gender icons or colors.
 - Seat Selection: Users can select a maximum of 5 seats. Since user login is mandatory, seats cannot be selected next to the opposite gender.

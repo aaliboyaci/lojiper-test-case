@@ -13,7 +13,7 @@ Bu projenin amacı, NextJS, TypeScript ve Context API kullanarak otobüs bilet s
 ## Teknik Detaylar
 
 - Kullanılan Teknolojiler: React (18.2.0), NextJS (13.4.19), TypeScript, Context API, NextJS API Routes, ESLint (8.47.0), Axios (1.4.0)
-- Uygulama
+- Uygulama üç katmanlı mimari yazılım felsefesini takip ederek yazılmıştır. Böylelikle "seperate of concerns" ilkesinin sağlanması amaçlanmıştır. Böylelikle, uygulamanın olası geliştirmeleri, bakımları ve unit testleri için kolaylık sağlayacak bir zemin hazırlanmıştır.
 - Sefer Verileri: Statik JSON dosyalarını baz alarak NextJS API Routes ile kendi içindeki API endpointleri, Axios ile kullanarak elde edilir.
 - Otobüs Düzeni: 2 sıra çift koltuk şeklinde, dolu koltuklar cinsiyet harfleri ve/veya renklerle belirtilir.
 - Koltuk Seçimi: En fazla 5 koltuk seçilebilir, kullanıcı girişi zorunlu olduğundan, giriş yapan kullanıcının cinsiyetine göre karşı cinsin yanına oturulamaz.
