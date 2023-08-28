@@ -54,7 +54,22 @@ const SearchResultsPage = () => {
             rota: {searchResults.departCity} &gt; {searchResults.arrivalCity}
           </p>
           <p>bilet fiyatı: {searchResults.price} ₺</p>
-          <p>boş koltuk sayısı: {searchResults.availableSeats}</p>
+          <p>
+            {isLogin ? (
+              <Link
+                href={`/ticket?id=${searchResults.id}&depart=${searchResults.departCity}&arrival=${searchResults.arrivalCity}`}
+              >
+                Boş koltukları görüntüle
+              </Link>
+            ) : (
+              <>
+                <p>Boş koltukları görüntülemek için lütfen giriş yapın </p>
+                <Link href="/login">
+                  <button>Giriş Yap</button>
+                </Link>
+              </>
+            )}
+          </p>
         </div>
       ) : null}
     </div>

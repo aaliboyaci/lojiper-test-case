@@ -1,12 +1,59 @@
 "use client";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useContext, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  BusSeatData,
+  busSeatData,
+} from "../api/travelData/busSeatData/busSeatData";
+import { fetchBusSeatData } from "@/business-logic/fetchBusSeatData";
+import "./ticketStyle.css";
+import Link from "next/link";
+import Loading from "../components/Loading";
+import { fetchTravelData } from "@/business-logic/fetchTravelData";
+import { MainContext } from "../Context/mainProvider";
+import { TravelData } from "../Interfaces/uiRelatedTypes";
 
 const SeatSelectionPage: React.FC = () => {
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+  const departCity = searchParams.get("depart");
+  const arrivalCity = searchParams.get("arrival");
+
+  const { userSearchQuery } = useContext(MainContext);
+  const [searchResults, setSearchResults] = useState<TravelData | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
-  const router = useRouter();
+  const [newSeatData, setNewSeatData] = useState<BusSeatData | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    fetchBusSeatData(Number(id))
+      .then((results) => {
+        console.log(results);
+        setNewSeatData(results || undefined);
+      })
+      .catch((error) => {
+        console.error("Hata:", error);
+      });
+  }, [id]);
+
+  useEffect(() => {
+    fetchTravelData(userSearchQuery)
+      .then((results) => {
+        setSearchResults(results || null);
+      })
+      .catch((error) => {
+        console.error("Hata:", error);
+      });
+  }, []);
+
+  if (!newSeatData) {
+    return <Loading />;
+  }
+
+  const seatData = newSeatData;
 
   const numRows = 5;
   const numCols = 4;
@@ -15,8 +62,29 @@ const SeatSelectionPage: React.FC = () => {
     Array(numCols).fill(null)
   );
 
+  seatData.forEach(
+    (seat: {
+      row: number;
+      col: number;
+      isOccupied: boolean;
+      passengerGender: string;
+    }) => {
+      const { row, col, isOccupied, passengerGender } = seat;
+      if (row >= 0 && row < numRows && col >= 0 && col < numCols) {
+        busLayout[row][col] = isOccupied ? passengerGender : null;
+      }
+    }
+  );
+
   const handleSeatClick = (row: number, col: number) => {
     const seat = `${row}${col}`;
+
+    if (
+      (busLayout[row][col] === "male" || busLayout[row][col] === "female") &&
+      !selectedSeats.includes(seat)
+    ) {
+      return;
+    }
 
     if (selectedSeats.length >= 5 && !selectedSeats.includes(seat)) {
       toast.error("En fazla 5 koltuk seçebilirsiniz!");
@@ -31,96 +99,53 @@ const SeatSelectionPage: React.FC = () => {
   };
 
   const calculateTotalPrice = () => {
-    const basePrice = 50;
-    return basePrice * selectedSeats.length;
-  };
-
-  const handleContinue = () => {
-    router.push("/payment");
+    const basePrice = searchResults?.price;
+    return basePrice ? basePrice * selectedSeats.length : null;
   };
 
   return (
     <div className="seat-selection-page">
       <h1>Sefer Detayları ve Fiyat</h1>
+      <h2>
+        {departCity} - {arrivalCity} Seferi
+      </h2>
       <div className="bus-layout">
         {busLayout.map((row, rowIndex) => (
           <div key={rowIndex} className="bus-row">
-            {row.map((_, colIndex) => (
+            {row.map((passenger, colIndex) => (
               <div
                 key={colIndex}
                 className={`bus-seat ${
                   selectedSeats.includes(`${rowIndex}${colIndex}`)
                     ? "selected"
+                    : passenger === "male"
+                    ? "occupied-male"
+                    : passenger === "female"
+                    ? "occupied-female"
                     : ""
                 } ${colIndex === 1 ? "gapBetween" : ""}`}
                 onClick={() => handleSeatClick(rowIndex, colIndex)}
               >
                 {selectedSeats.includes(`${rowIndex}${colIndex}`)
                   ? "X"
+                  : passenger
+                  ? passenger === "male"
+                    ? "E"
+                    : "K"
                   : `${rowIndex * numCols + colIndex + 1}`}
               </div>
             ))}
           </div>
         ))}
       </div>
+
       <div className="total-price">
         Toplam Ücret: {calculateTotalPrice()} TL
       </div>
-      <button className="continue-button" onClick={handleContinue}>
-        Devam Et
-      </button>
+      <Link href="/payment">
+        <button className="continue-button">Devam Et</button>
+      </Link>
       <ToastContainer />
-      <style jsx>{`
-        .seat-selection-page {
-          text-align: center;
-          padding: 20px;
-        }
-        .bus-layout {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 10px;
-        }
-        .bus-row {
-          display: flex;
-          gap: 10px;
-        }
-        .bus-seat {
-          width: 40px;
-          height: 40px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid #ccc;
-          cursor: pointer;
-        }
-        .bus-seat.selected {
-          background-color: #3498db;
-          color: #fff;
-        }
-        .bus-seat.occupied {
-          background-color: #e74c3c;
-          color: #fff;
-        }
-        .occupied-icon {
-          font-size: 14px;
-        }
-        .gapBetween {
-          margin-right: 20px;
-        }
-        .total-price {
-          font-size: 18px;
-          margin-top: 20px;
-        }
-        .continue-button {
-          margin-top: 20px;
-          padding: 10px 20px;
-          background-color: #2ecc71;
-          color: #fff;
-          border: none;
-          cursor: pointer;
-        }
-      `}</style>
     </div>
   );
 };
