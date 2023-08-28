@@ -14,14 +14,14 @@ const SearchResultsPage = () => {
   const { isLogin, userName, userSearchQuery } = useContext(MainContext);
   const [searchResults, setSearchResults] = useState<TravelData | null>(null);
   const [seatInfo, setSeatInfo] = useState<number | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoadingSearch(true);
+
     fetchTravelData(userSearchQuery)
       .then((results) => setSearchResults(results || null))
       .catch((error) => console.error("Hata:", error));
-    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -32,12 +32,15 @@ const SearchResultsPage = () => {
           (seat: BusSeatData) => seat.passengerGender === "null"
         ).length;
         setSeatInfo(nullCount);
+        setIsLoadingSearch(false);
       })
       .catch((error) => {
         console.error("Hata:", error);
+        setIsLoadingSearch(false);
       });
   }, [searchResults]);
 
+  console.log(isLoadingSearch);
   const renderResults = () => (
     <div className="resultsContainer">
       <h2>Arama Sonuçları</h2>
@@ -46,7 +49,7 @@ const SearchResultsPage = () => {
         {`${userSearchQuery.departCity}'dan, ${userSearchQuery.arrivalCity}'a, ${userSearchQuery.inputDate} tarihinde uygun seferler`}
       </p>
       <hr />
-      <div className="main">{isLoading && <Loading />}</div>
+
       {searchResults ? (
         <div className="searchResult">
           <p>Sefer No: {searchResults.id}</p>
@@ -72,6 +75,10 @@ const SearchResultsPage = () => {
               </>
             )}
           </p>
+        </div>
+      ) : isLoadingSearch ? (
+        <div className="main">
+          <Loading />
         </div>
       ) : (
         <h2>Uygun Sefer Bulunumadı</h2>
