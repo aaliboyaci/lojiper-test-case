@@ -12,11 +12,12 @@ Bu projenin amacı, NextJS, TypeScript ve Context API kullanarak otobüs bilet s
 
 ## Teknik Detaylar
 
-- Kullanılan Teknolojiler: NextJS, TypeScript, Context API
+- Kullanılan Teknolojiler: React (18.2.0), NextJS (13.4.19), TypeScript, Context API, NextJS API Routes, ESLint (8.47.0), Axios (1.4.0)
+- Uygulama
 - Sefer Verileri: Statik JSON dosyalarını baz alarak NextJS API Routes ile kendi içindeki API endpointleri, Axios ile kullanarak elde edilir.
-- Otobüs Düzeni: 2 sıra çift koltuk şeklinde, dolu koltuklar cinsiyet ikonları veya renklerle belirtilir.
+- Otobüs Düzeni: 2 sıra çift koltuk şeklinde, dolu koltuklar cinsiyet harfleri ve/veya renklerle belirtilir.
 - Koltuk Seçimi: En fazla 5 koltuk seçilebilir, kullanıcı girişi zorunlu olduğundan, giriş yapan kullanıcının cinsiyetine göre karşı cinsin yanına oturulamaz.
-- Uygulamanın çeşitli yerlerinde toast mesajları ile kullanıcıya başarılı sonuçlar, hata mesajları ya da uyarılar görüntülenir
+- Uygulamanın çeşitli yerlerinde toast mesajları ile kullanıcıya başarılı sonuçlar, hata mesajları ya da uyarılar görüntülenir.
 
 ## Uygulama Sayfaları ve Özellikleri
 
@@ -26,6 +27,7 @@ Bu projenin amacı, NextJS, TypeScript ve Context API kullanarak otobüs bilet s
 - Başarılı giriş durumunda anasayfaya yönlendirilir.
 - Hatalı giriş durumunda hata mesajı alır.
 - İlk defa giriş yapan kullanıcılar kayıt ol sayfasına yönlendirilebilir.
+- Giriş yaptıktan sonra, üst kısımda "Hoşgeldin" mesajının yanındaki "Çıkış yap" butonu ile LogOut işlemini gerçekleştirebilir.
 
 <img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/login.png" alt="login" width="600">
 
