@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Link from "next/link";
-import { MainContext } from "../Context/mainProvider";
+import { MainContext } from "../../app/Context/mainProvider";
 import "./Header.css";
 import { useRouter } from "next/navigation";
 

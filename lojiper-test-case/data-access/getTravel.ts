@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TravelData } from "@/app/Interfaces/uiRelatedTypes";
+import { TravelData } from "@/src/Interfaces/uiRelatedTypes";
 
 export function getTravelData(): Promise<TravelData[]> {
   return axios

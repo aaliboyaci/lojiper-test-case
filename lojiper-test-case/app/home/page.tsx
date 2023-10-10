@@ -1,12 +1,12 @@
 "use client";
 import React, { useContext, useState } from "react";
-import "../styles/Home.css";
+import "../../src/styles/MainStyles.css";
 import { MainContext } from "../Context/mainProvider";
-import { showToastFail } from "../register/components/ShowToast";
+import { showToastFail } from "../../src/components/registerComponents/ShowToast";
 import { ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
-import Loading from "../components/Loading";
-import Header from "../components/Header";
+import Loading from "../../src/components/Loading";
+import Header from "../../src/components/Header";
 
 const Home = () => {
   const { setUserSearchQuery } = useContext(MainContext);

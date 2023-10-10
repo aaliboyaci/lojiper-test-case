@@ -5,14 +5,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BusSeatData } from "../api/travelData/busSeatData/busSeatData";
 import { fetchBusSeatData } from "@/business-logic/fetchBusSeatData";
-import "./ticketStyle.css";
-import Loading from "../components/Loading";
+import "../../src/styles/ticketStyle.css";
+import Loading from "../../src/components/Loading";
 import { fetchTravelData } from "@/business-logic/fetchTravelData";
 import { MainContext } from "../Context/mainProvider";
-import { TravelData } from "../Interfaces/uiRelatedTypes";
-import handleSeatClick from "./components/handeSeatClick";
-import "../styles/Home.css";
-import Header from "../components/Header";
+import { TravelData } from "../../src/Interfaces/uiRelatedTypes";
+import handleSeatClick from "../../src/components/ticketComponents/handeSeatClick";
+import "../../src/styles/MainStyles.css";
+import Header from "../../src/components/Header";
 
 const SeatSelectionPage: React.FC = () => {
   const router = useRouter();

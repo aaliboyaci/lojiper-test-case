@@ -4,9 +4,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MainContext } from "../Context/mainProvider";
 import Link from "next/link";
-import Loading from "../components/Loading";
-import Header from "../components/Header";
-import "../styles/Home.css";
+import Loading from "../../src/components/Loading";
+import Header from "../../src/components/Header";
+import "../../src/styles/MainStyles.css";
 
 const PaymentPage: React.FC = () => {
   const { totalPrice, setTotalPrice } = useContext(MainContext);

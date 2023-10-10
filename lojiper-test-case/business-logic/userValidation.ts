@@ -1,5 +1,5 @@
 import axios from "axios";
-import { currentUser, User } from "../app/Interfaces/uiRelatedTypes";
+import { currentUser, User } from "../src/Interfaces/uiRelatedTypes";
 
 export const fetchUsers = async () => {
   const response = await axios.get("/api/");

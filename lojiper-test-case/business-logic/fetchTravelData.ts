@@ -1,4 +1,4 @@
-import { TravelData } from "@/app/Interfaces/uiRelatedTypes";
+import { TravelData } from "@/src/Interfaces/uiRelatedTypes";
 import { UserSearchQuery } from "@/app/Context/mainProvider";
 import { getTravelData } from "@/data-access/getTravel";
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { fetchUsers } from "./userValidation";
-import { User, currentUser } from "@/app/Interfaces/uiRelatedTypes";
+import { User, currentUser } from "@/src/Interfaces/uiRelatedTypes";
 
 export const saveUser = async (user: User) => {
   try {

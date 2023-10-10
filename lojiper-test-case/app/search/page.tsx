@@ -3,12 +3,12 @@ import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { MainContext } from "../Context/mainProvider";
 import { fetchTravelData } from "@/business-logic/fetchTravelData";
-import { TravelData } from "../Interfaces/uiRelatedTypes";
-import Header from "../components/Header";
-import "../styles/Home.css";
+import { TravelData } from "../../src/Interfaces/uiRelatedTypes";
+import Header from "../../src/components/Header";
+import "../../src/styles/MainStyles.css";
 import { fetchBusSeatData } from "@/business-logic/fetchBusSeatData";
 import { BusSeatData } from "../api/travelData/busSeatData/busSeatData";
-import Loading from "../components/Loading";
+import Loading from "../../src/components/Loading";
 
 const SearchResultsPage = () => {
   const { isLogin, userName, userSearchQuery } = useContext(MainContext);

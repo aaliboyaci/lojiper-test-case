@@ -2,12 +2,12 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
-import Loading from "../components/Loading";
+import Loading from "../../src/components/Loading";
 import { validateUserLogin } from "../../business-logic/userValidation";
 import { MainContext } from "../Context/mainProvider";
-import { LoginFormProps } from "../Interfaces/uiRelatedTypes";
-import Header from "../components/Header";
-import "../styles/Home.css";
+import { LoginFormProps } from "../../src/Interfaces/uiRelatedTypes";
+import Header from "../../src/components/Header";
+import "../../src/styles/MainStyles.css";
 
 const LoginForm: React.FC<LoginFormProps> = ({
   username,

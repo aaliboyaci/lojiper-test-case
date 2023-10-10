@@ -1,16 +1,19 @@
 "use client";
 import React, { useState } from "react";
-import "../styles/Home.css";
+import "../../src/styles/MainStyles.css";
 import { useRouter } from "next/navigation";
-import Loading from "../components/Loading";
-import "./register.css";
+import Loading from "../../src/components/Loading";
+import "../../src/styles/registerStyles.css";
 import { saveUser } from "@/business-logic/userRegister";
-import FormInput from "./components/FormInput";
-import BirthdateInput from "./components/BirthdateInput";
+import FormInput from "../../src/components/registerComponents/FormInput";
+import BirthdateInput from "../../src/components/registerComponents/BirthdateInput";
 import "react-toastify/dist/ReactToastify.css";
-import { showToastFail, showToastSuccess } from "./components/ShowToast";
+import {
+  showToastFail,
+  showToastSuccess,
+} from "../../src/components/registerComponents/ShowToast";
 import { ToastContainer } from "react-toastify";
-import Header from "../components/Header";
+import Header from "../../src/components/Header";
 
 export default function Register() {
   const router = useRouter();
