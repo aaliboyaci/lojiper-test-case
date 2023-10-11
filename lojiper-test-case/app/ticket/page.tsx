@@ -187,12 +187,15 @@ const SeatSelectionPage: React.FC = () => {
         <button
           className="continue-button"
           onClick={() => {
-            const isVerifyingDone = document.querySelector(
-              `.row-auto.border.p-2.my-2`
+            const isVerifyingDone = document.querySelectorAll(
+              ".ticket-info-disabled"
             );
-            if (selectedSeats.length === 0) {
+            console.log(isVerifyingDone);
+            console.log(selectedSeats);
+
+            if (selectedSeats.length == 0) {
               toast.warn("Koltuk seçmediniz");
-            } else if (isVerifyingDone !== null) {
+            } else if (isVerifyingDone.length !== selectedSeats.length) {
               toast.error(
                 "Kullanıcı bilgilerini doğrulamadan ilerleyemezsiniz"
               );
