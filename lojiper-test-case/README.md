@@ -96,13 +96,13 @@ Password: 43210
 
 A total of 8 sample travel data have been generated. For queries outside of these dates and destinations, users will be met with the message "Uygun sefer bulunamadı"
 
-31 August 2023
+10 October 2023
 İstanbul > İzmir
 İstanbul > Antalya
 Ankara > İzmir
 Ankara > Antalya
 
-1 September 2023
+11 October 2023
 İstanbul > İzmir
 İstanbul > Antalya
 Ankara > İzmir

@@ -98,13 +98,13 @@ Parola: 43210
 
 Toplamda 8 adet örnek sefer verisi oluşturuldu. Bu tarihler ve destinasyonlar dışındaki sorgularda kullanıcı “Uygun Sefer Bulunamadı” mesajıyla karşılanır.
 
-31 Ağustos 2023
+10 Ekim 2023
 İstanbul > İzmir
 İstanbul > Antalya
 Ankara > İzmir
 Ankara > Antalya
 
-1 Eylül 2023
+11 Ekim 2023
 İstanbul > İzmir
 İstanbul > Antalya
 Ankara > İzmir
