@@ -17,9 +17,13 @@ const FormInput: React.FC<FormInputProps> = ({
 }) => {
   return (
     <div className="form-group">
-      <label>{label}</label>
+      <label className="form-label">{label}</label>
       {type === "select" ? (
-        <select value={value} onChange={(e) => onChange(e.target.value)}>
+        <select
+          className="form-select"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        >
           {options?.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
@@ -28,6 +32,7 @@ const FormInput: React.FC<FormInputProps> = ({
         </select>
       ) : (
         <input
+          className="form-control"
           type={type}
           value={value}
           onChange={(e) => onChange(e.target.value)}

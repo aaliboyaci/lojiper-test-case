@@ -52,8 +52,7 @@ const TravelInfoPage: React.FC<TravelInfoProps> = ({ selectedSeats }) => {
 
   return (
     <div>
-      <ToastContainer />
-      <h4 className="py-4">Seçilen Yolcu Bilgileri</h4>
+      <h4 className="py-1">Seçilen Yolcu Bilgileri</h4>
       {selectedSeats.map((seat) => {
         const seatNo = seat.slice(0, 2);
         const seatGender = seat.charAt(2);
@@ -61,7 +60,7 @@ const TravelInfoPage: React.FC<TravelInfoProps> = ({ selectedSeats }) => {
 
         return (
           <div
-            className={`row-auto border p-2 my-2 ${uniqueClassName}`}
+            className={`row-auto border rounded-3 p-2 my-2 ${uniqueClassName}`}
             key={seat}
           >
             <form
@@ -72,13 +71,21 @@ const TravelInfoPage: React.FC<TravelInfoProps> = ({ selectedSeats }) => {
               <div className="col-auto"></div>
               <b>Koltuk No: {seatNumberCreator(seatNo)}</b>
               <span> Cinsiyet: {seatGender === "f" ? "Kadın" : "Erkek"}</span>
-              <input className="my-2" name="TCNO" placeholder="TC Kimlik NO" />
               <input
-                className="my-2"
+                className="form-control my-2"
+                name="TCNO"
+                placeholder="TC Kimlik NO"
+              />
+              <input
+                className="form-control my-2"
                 name="isimSoyisim"
                 placeholder="İsim Soyisim"
               />
-              <button type="submit" data-seat={seatNo}>
+              <button
+                className="btn btn-primary"
+                type="submit"
+                data-seat={seatNo}
+              >
                 Doğrula
               </button>
             </form>

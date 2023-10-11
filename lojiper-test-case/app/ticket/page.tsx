@@ -116,113 +116,137 @@ const SeatSelectionPage: React.FC = () => {
   };
 
   return (
-    <div className="main">
-      <div className="seat-selection-page">
-        <Header />
-        <h1>Koltuk Seçimi</h1>
-        <p>
-          Merhaba {userName}
-          {userGender === "male" ? <>{"(e)"}</> : <>{"(k)"}</>}
-        </p>
-        <ToastContainer />
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <h2>
-          {departCity} - {arrivalCity} Seferi
-        </h2>
-        <div className="bus-layout">
-          {busLayout.map((row, rowIndex) => (
-            <div key={rowIndex} className="bus-row">
-              {row.map((passenger, colIndex) => (
-                <div
-                  key={colIndex}
-                  className={`bus-seat ${
-                    selectedSeats.includes(`${rowIndex}${colIndex}female`) ||
-                    selectedSeats.includes(`${rowIndex}${colIndex}male`)
-                      ? "selected"
-                      : passenger === "male"
-                      ? "occupied-male"
-                      : passenger === "female"
-                      ? "occupied-female"
-                      : ""
-                  } ${colIndex === 1 ? "gapBetween" : ""}`}
+    <>
+      <Header />
+      <div className="container-fluid">
+        <div className="row justify-content-center">
+          <div className="col-4"></div>
+          <div className="col-md-4">
+            <ToastContainer />
+            <div className="row justify-content-center p-0 border rounded-3 text-center">
+              <main className="col-md p-4 border form-container">
+                {error && <p style={{ color: "red" }}>{error}</p>}
+                <h2 className="my-3">
+                  {departCity} - {arrivalCity} Seferi
+                </h2>
+                <div className="bus-layout">
+                  {busLayout.map((row, rowIndex) => (
+                    <div key={rowIndex} className="bus-row">
+                      {row.map((passenger, colIndex) => (
+                        <div
+                          key={colIndex}
+                          className={`bus-seat ${
+                            selectedSeats.includes(
+                              `${rowIndex}${colIndex}female`
+                            ) ||
+                            selectedSeats.includes(`${rowIndex}${colIndex}male`)
+                              ? "selected"
+                              : passenger === "male"
+                              ? "occupied-male"
+                              : passenger === "female"
+                              ? "occupied-female"
+                              : ""
+                          } ${colIndex === 1 ? "gapBetween" : ""}`}
+                          onClick={() => {
+                            if (
+                              selectedSeats.includes(
+                                `${rowIndex}${colIndex}female`
+                              ) ||
+                              selectedSeats.includes(
+                                `${rowIndex}${colIndex}male`
+                              )
+                            ) {
+                              setSelectedSeats((prevSelectedSeats) =>
+                                prevSelectedSeats.filter(
+                                  (s) =>
+                                    s !== `${rowIndex}${colIndex}female` &&
+                                    s !== `${rowIndex}${colIndex}male`
+                                )
+                              );
+                            } else {
+                              openModal();
+                              setSeatRow(rowIndex);
+                              setSeatCol(colIndex);
+                            }
+                          }}
+                        >
+                          {selectedSeats.includes(
+                            `${rowIndex}${colIndex}female`
+                          ) ||
+                          selectedSeats.includes(`${rowIndex}${colIndex}male`)
+                            ? "X"
+                            : passenger
+                            ? passenger === "male"
+                              ? "E"
+                              : "K"
+                            : `${rowIndex * numCols + colIndex + 1}`}
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+                <div></div>
+                <br></br>
+                <p>
+                  <small className="opacity-25">
+                    Seçili koltuklardan vazgeçmek için tekrar üstüne
+                    tıklayabilirsiniz
+                  </small>
+                </p>
+                <TravelInfoPage selectedSeats={selectedSeats} />
+                <div className="total-price">
+                  Toplam Ücret: {calculateTotalPrice()} TL
+                </div>
+                <button
+                  className="btn btn-success"
                   onClick={() => {
-                    if (
-                      selectedSeats.includes(`${rowIndex}${colIndex}female`) ||
-                      selectedSeats.includes(`${rowIndex}${colIndex}male`)
+                    const isVerifyingDone = document.querySelectorAll(
+                      ".ticket-info-disabled"
+                    );
+                    console.log(isVerifyingDone);
+                    console.log(selectedSeats);
+
+                    if (selectedSeats.length == 0) {
+                      toast.warn("Koltuk seçmediniz");
+                    } else if (
+                      isVerifyingDone.length !== selectedSeats.length
                     ) {
-                      setSelectedSeats((prevSelectedSeats) =>
-                        prevSelectedSeats.filter(
-                          (s) =>
-                            s !== `${rowIndex}${colIndex}female` &&
-                            s !== `${rowIndex}${colIndex}male`
-                        )
+                      toast.error(
+                        "Kullanıcı bilgilerini doğrulamadan ilerleyemezsiniz"
                       );
                     } else {
-                      openModal();
-                      setSeatRow(rowIndex);
-                      setSeatCol(colIndex);
+                      setTotalPrice(
+                        searchResults?.price
+                          ? searchResults.price * selectedSeats.length
+                          : 0
+                      );
+                      setSelectedSeats([]);
+                      router.push("/payment");
+                      console.clear();
                     }
                   }}
                 >
-                  {selectedSeats.includes(`${rowIndex}${colIndex}female`) ||
-                  selectedSeats.includes(`${rowIndex}${colIndex}male`)
-                    ? "X"
-                    : passenger
-                    ? passenger === "male"
-                      ? "E"
-                      : "K"
-                    : `${rowIndex * numCols + colIndex + 1}`}
-                </div>
-              ))}
+                  Ödeme
+                </button>
+              </main>
+              <ToastContainer />
             </div>
-          ))}
-        </div>
-        <div></div>
-        <br></br>
-        <br></br>
-        <TravelInfoPage selectedSeats={selectedSeats} />
-        <div className="total-price">
-          Toplam Ücret: {calculateTotalPrice()} TL
-        </div>
-        <button
-          className="continue-button"
-          onClick={() => {
-            const isVerifyingDone = document.querySelectorAll(
-              ".ticket-info-disabled"
-            );
-            console.log(isVerifyingDone);
-            console.log(selectedSeats);
 
-            if (selectedSeats.length == 0) {
-              toast.warn("Koltuk seçmediniz");
-            } else if (isVerifyingDone.length !== selectedSeats.length) {
-              toast.error(
-                "Kullanıcı bilgilerini doğrulamadan ilerleyemezsiniz"
-              );
-            } else {
-              setTotalPrice(
-                searchResults?.price
-                  ? searchResults.price * selectedSeats.length
-                  : 0
-              );
-              setSelectedSeats([]);
-              router.push("/payment");
-              console.clear();
-            }
-          }}
-        >
-          Ödeme
-        </button>
-        <ToastContainer />
+            {isModalOpen === 1 && (
+              <GenderModal
+                onGenderSubmit={handleGenderSubmit}
+                isModalOpen={isModalOpen}
+              />
+            )}
+          </div>
+          <div className="col-4"></div>
+        </div>
+
+        <footer className="footer">
+          <p>&copy; {new Date().getFullYear()} Bus Ticket App</p>
+        </footer>
       </div>
-
-      {isModalOpen === 1 && (
-        <GenderModal
-          onGenderSubmit={handleGenderSubmit}
-          isModalOpen={isModalOpen}
-        />
-      )}
-    </div>
+    </>
   );
 };
 

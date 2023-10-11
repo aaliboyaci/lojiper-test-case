@@ -28,7 +28,14 @@ const Header = () => {
           {isLogin ? (
             <>
               <span>Hoşgeldin, {userName} </span>
-              <button onClick={handleLogOut}> Çıkış Yap</button>
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={handleLogOut}
+              >
+                {" "}
+                Çıkış Yap
+              </button>
             </>
           ) : (
             <>

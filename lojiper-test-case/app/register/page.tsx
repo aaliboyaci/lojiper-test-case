@@ -89,69 +89,83 @@ export default function Register() {
   };
 
   return (
-    <div className="register-container">
+    <>
       <Header />
-      <ToastContainer />
-      <div className="register-form border">
-        <h1>Kayıt Ol</h1>
-        <form onSubmit={handleRegister}>
-          <FormInput
-            label="Email"
-            type="email"
-            value={email}
-            onChange={setEmail}
-          />
-          <FormInput
-            label="Parola"
-            type="password"
-            value={password}
-            onChange={setPassword}
-          />
-          <FormInput
-            label="İsim"
-            type="text"
-            value={firstName}
-            onChange={setFirstName}
-          />
-          <FormInput
-            label="Soyisim"
-            type="text"
-            value={lastName}
-            onChange={setLastName}
-          />
-          <FormInput
-            label="Kullanıcı Adı"
-            type="text"
-            value={uniqueName}
-            onChange={setUniqueName}
-          />
-          <FormInput
-            label="Cinsiyet"
-            type="select"
-            value={gender}
-            onChange={setGender}
-            options={[
-              { value: "", label: "Seçin" },
-              { value: "female", label: "Kadın" },
-              { value: "male", label: "Erkek" },
-            ]}
-          />
-          <BirthdateInput
-            birthDay={birthDay}
-            birthMonth={birthMonth}
-            birthYear={birthYear}
-            onDayChange={setBirthDay}
-            onMonthChange={setBirthMonth}
-            onYearChange={setBirthYear}
-          />
+      <div className="container-fluid">
+        <div className="row justify-content-center">
+          <div className="col-4"></div>
+          <div className="col-md-4">
+            <ToastContainer />
+            <div className="row justify-content-center p-0 border rounded-3">
+              <main className="col-md p-4 border form-container">
+                <h2>Kayıt Ol</h2>
+                <form className="search-form" onSubmit={handleRegister}>
+                  <FormInput
+                    label="Email"
+                    type="email"
+                    value={email}
+                    onChange={setEmail}
+                  />
+                  <FormInput
+                    label="Parola"
+                    type="password"
+                    value={password}
+                    onChange={setPassword}
+                  />
+                  <FormInput
+                    label="İsim"
+                    type="text"
+                    value={firstName}
+                    onChange={setFirstName}
+                  />
+                  <FormInput
+                    label="Soyisim"
+                    type="text"
+                    value={lastName}
+                    onChange={setLastName}
+                  />
+                  <FormInput
+                    label="Kullanıcı Adı"
+                    type="text"
+                    value={uniqueName}
+                    onChange={setUniqueName}
+                  />
+                  <FormInput
+                    label="Cinsiyet"
+                    type="select"
+                    value={gender}
+                    onChange={setGender}
+                    options={[
+                      { value: "", label: "Seçin" },
+                      { value: "female", label: "Kadın" },
+                      { value: "male", label: "Erkek" },
+                    ]}
+                  />
+                  <BirthdateInput
+                    birthDay={birthDay}
+                    birthMonth={birthMonth}
+                    birthYear={birthYear}
+                    onDayChange={setBirthDay}
+                    onMonthChange={setBirthMonth}
+                    onYearChange={setBirthYear}
+                  />
 
-          {error && <p className="error-message">{error}</p>}
-          <button type="submit" className="register-button">
-            Kayıt Ol
-          </button>
-          {isLoading && <Loading />}
-        </form>
+                  {error && <p className="error-message">{error}</p>}
+                  <button type="submit" className="register-button my-1">
+                    Kayıt Ol
+                  </button>
+                  {isLoading && <Loading />}
+                </form>
+              </main>
+            </div>
+
+            <footer className="footer">
+              <p>&copy; {new Date().getFullYear()} Bus Ticket App</p>
+            </footer>
+          </div>
+          <div className="col-4"></div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

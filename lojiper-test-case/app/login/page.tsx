@@ -8,6 +8,7 @@ import { MainContext } from "../Context/mainProvider";
 import { LoginFormProps } from "../../src/Interfaces/uiRelatedTypes";
 import Header from "../../src/components/Header";
 import "../../src/styles/MainStyles.css";
+import { ToastContainer } from "react-toastify";
 
 const LoginForm: React.FC<LoginFormProps> = ({
   username,
@@ -20,27 +21,30 @@ const LoginForm: React.FC<LoginFormProps> = ({
   handleRegisterRedirect,
 }) => {
   return (
-    <form onSubmit={handleLogin}>
-      <div>
-        <label>Kullanıcı Adı</label>
+    <form className="search-form" onSubmit={handleLogin}>
+      <div className="form-group py-2">
+        <label className="form-label py-1">Kullanıcı Adı</label>
         <input
           type="text"
+          className="form-control py-1"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
-      <div>
-        <label>Parola</label>
+      <div className="form-group py-2">
+        <label className="form-label py-1">Parola</label>
         <input
+          className="form-control py-1"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <button type="submit">Giriş Yap</button>
-      <br></br>
-      <br></br>
+      <button className="btn btn-primary my-3" type="submit">
+        Giriş Yap
+      </button>
+
       {isLoading && <Loading />}
       <p>
         Hesabınız yok mu?
@@ -89,23 +93,33 @@ const Login = () => {
   };
 
   return (
-    <div className="main">
+    <>
       <Header />
-      <div className="border p-4">
-        <h1>Kullanıcı Girişi</h1>
-
-        <LoginForm
-          username={username}
-          password={password}
-          setUsername={setUsername}
-          setPassword={setPassword}
-          error={error}
-          isLoading={isLoading}
-          handleLogin={handleLogin}
-          handleRegisterRedirect={handleRegisterRedirect}
-        />
+      <div className="container-fluid">
+        <div className="row justify-content-center">
+          <div className="col-4"></div>
+          <div className="col-md-4">
+            <ToastContainer />
+            <div className="row justify-content-center p-0 border rounded-3">
+              <main className="col-md p-4 border form-container">
+                <h2>Giriş Yap</h2>
+                <LoginForm
+                  username={username}
+                  password={password}
+                  setUsername={setUsername}
+                  setPassword={setPassword}
+                  error={error}
+                  isLoading={isLoading}
+                  handleLogin={handleLogin}
+                  handleRegisterRedirect={handleRegisterRedirect}
+                />
+              </main>
+            </div>
+          </div>
+          <div className="col-4"></div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

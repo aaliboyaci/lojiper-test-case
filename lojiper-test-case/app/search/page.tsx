@@ -9,6 +9,7 @@ import "../../src/styles/MainStyles.css";
 import { fetchBusSeatData } from "@/business-logic/fetchBusSeatData";
 import { BusSeatData } from "../api/travelData/busSeatData/busSeatData";
 import Loading from "../../src/components/Loading";
+import { ToastContainer } from "react-toastify";
 
 const SearchResultsPage = () => {
   const { isLogin, userName, userSearchQuery } = useContext(MainContext);
@@ -40,67 +41,76 @@ const SearchResultsPage = () => {
       });
   }, [searchResults]);
 
-  const renderResults = () => (
-    <div className="resultsContainer">
-      <h2>Arama Sonuçları</h2>
-      <h3>Şunun için arama yaptınız:</h3>
-      <p>
-        {`${userSearchQuery.departCity}'dan, ${userSearchQuery.arrivalCity}'a, ${userSearchQuery.inputDate} tarihinde uygun seferler`}
-      </p>
-      <hr />
-
-      {searchResults ? (
-        <div className="searchResult">
-          <p>Sefer No: {searchResults.id}</p>
-          <p>Sefer Tarihi: {searchResults.date}</p>
-          <p>
-            Rota: {searchResults.departCity} &gt; {searchResults.arrivalCity}
-          </p>
-          <p>Bilet Fiyatı: {searchResults.price} ₺</p>
-          <p>Boş Koltuk Sayısı: {seatInfo}</p>
-          <>
-            {isLogin ? (
-              <Link
-                href={`/ticket?id=${searchResults.id}&depart=${searchResults.departCity}&arrival=${searchResults.arrivalCity}`}
-                style={{ color: "green" }}
-              >
-                <b>Boş koltukları görüntüle</b>
-              </Link>
-            ) : (
-              <>
-                <p>Boş koltukları görüntülemek için lütfen giriş yapın </p>
-                <Link href="/login">
-                  <button>Giriş Yap</button>
-                </Link>
-              </>
-            )}
-          </>
-        </div>
-      ) : isLoadingSearch ? (
-        <div className="main">
-          <Loading />
-        </div>
-      ) : (
-        <>
-          <h2>Uygun Sefer Bulunumadı</h2>
-          {error && <p style={{ color: "red" }}>{error}</p>}
-        </>
-      )}
-    </div>
-  );
-
-  const renderFooter = () => (
-    <footer className="footer">
-      <p>&copy; {new Date().getFullYear()} Bus Ticket App</p>
-    </footer>
-  );
-
   return (
-    <div className="main">
+    <>
       <Header />
-      <main>{renderResults()}</main>
-      {renderFooter()}
-    </div>
+      <div className="container-fluid">
+        <div className="row justify-content-center">
+          <div className="col-4"></div>
+          <div className="col-md-4">
+            <ToastContainer />
+            <div className="row justify-content-center p-0 border rounded-3">
+              <main className="col-md p-4 border form-container">
+                <h2>Arama Sonuçları</h2>
+                <h5>Şunun için arama yaptınız:</h5>
+                <p>
+                  {`${userSearchQuery.departCity}'dan, ${userSearchQuery.arrivalCity}'a, ${userSearchQuery.inputDate} tarihinde uygun seferler`}
+                </p>
+                <hr className="my-4" />
+
+                {searchResults ? (
+                  <div className="searchResult">
+                    <p>Sefer No: {searchResults.id}</p>
+                    <p>Sefer Tarihi: {searchResults.date}</p>
+                    <p>
+                      Rota: {searchResults.departCity} &gt;{" "}
+                      {searchResults.arrivalCity}
+                    </p>
+                    <p>Bilet Fiyatı: {searchResults.price} ₺</p>
+                    <p>Boş Koltuk Sayısı: {seatInfo}</p>
+                    <>
+                      {isLogin ? (
+                        <Link
+                          href={`/ticket?id=${searchResults.id}&depart=${searchResults.departCity}&arrival=${searchResults.arrivalCity}`}
+                          style={{ color: "green" }}
+                        >
+                          <button type="button" className="btn btn-success">
+                            Boş Koltukları Görüntüle
+                          </button>
+                        </Link>
+                      ) : (
+                        <>
+                          <p>
+                            Boş koltukları görüntülemek için lütfen giriş yapın{" "}
+                          </p>
+                          <Link href="/login">
+                            <button>Giriş Yap</button>
+                          </Link>
+                        </>
+                      )}
+                    </>
+                  </div>
+                ) : isLoadingSearch ? (
+                  <div className="main">
+                    <Loading />
+                  </div>
+                ) : (
+                  <>
+                    <h2>Uygun Sefer Bulunamadı</h2>
+                    {error && <p style={{ color: "red" }}>{error}</p>}
+                  </>
+                )}
+              </main>
+            </div>
+          </div>
+
+          <div className="col-4"></div>
+          <footer className="footer">
+            <p>&copy; {new Date().getFullYear()} Bus Ticket App</p>
+          </footer>
+        </div>
+      </div>
+    </>
   );
 };
 

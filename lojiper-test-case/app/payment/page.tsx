@@ -60,110 +60,153 @@ const PaymentPage: React.FC = () => {
   };
   console.clear();
   return (
-    <div className="main">
+    <>
       <Header />
-      <h1>Ödeme</h1>
-      <br></br>
-      <h4>Ödeme Özeti</h4>
-      <p className="mt-2">
-        {userSearchQuery.inputDate} tarihinde {userSearchQuery.departCity}{" "}
-        {userSearchQuery.arrivalCity}
-      </p>
+      <div className="container-fluid">
+        <div className="row justify-content-center">
+          <div className="col-4"></div>
+          <div className="col-md-4">
+            <ToastContainer />
+            <div className="row justify-content-center p-0 border rounded-3">
+              <main className="col-md p-4 border form-container">
+                <h2>Ödeme</h2>
+                <br></br>
+                <h4>Ödeme Özeti</h4>
+                <p className="mt-2">
+                  {userSearchQuery.inputDate} tarihinde{" "}
+                  {userSearchQuery.departCity} {userSearchQuery.arrivalCity}
+                </p>
 
-      <div className="list-group my-3 mb-4">
-        {newSelectedSeats.map((userTicket, index) => (
-          <>
-            <li
-              className="list-group-item list-group-item-action d-flex gap-3 py-3"
-              key={index}
-            >
-              <Image
-                src={verifiedImage}
-                alt="verified ticket"
-                style={{ width: "16px", height: "16px" }}
-              ></Image>
-              <h6 className="mb-0">Koltuk:{userTicket.newUserSeat}</h6>
-              <p className="mb-0 opacity-75"> İsim: {userTicket.newUserName}</p>
-            </li>
-          </>
-        ))}
-      </div>
-      <h2 className="my-3">Toplam Tutar: {totalPrice} ₺</h2>
+                <div className="list-group my-3 mb-4">
+                  {newSelectedSeats.map((userTicket, index) => (
+                    <li
+                      className="list-group-item list-group-item-action d-flex gap-3 py-3"
+                      key={index}
+                    >
+                      <Image
+                        src={verifiedImage}
+                        alt="verified ticket"
+                        style={{ width: "16px", height: "16px" }}
+                      ></Image>
+                      <h6 className="mb-0">Koltuk:{userTicket.newUserSeat}</h6>
+                      <p className="mb-0 opacity-75">
+                        {" "}
+                        İsim: {userTicket.newUserName}
+                      </p>
+                    </li>
+                  ))}
+                </div>
+                <h2 className="my-3">Toplam Tutar: {totalPrice} ₺</h2>
 
-      {isPaymentProcessing ? (
-        <Loading />
-      ) : (
-        <>
-          {isPaymentSuccessful ? (
-            <>
-              <p>Ödeme başarıyla tamamlandı!</p>
-              <Link
-                href="/"
-                onClick={() => {
-                  setTotalPrice(0);
-                  setNewUserGender("");
-                  setNewSelectedSeats([]);
-                }}
-              >
-                Anasayfaya Dön
-              </Link>
-            </>
-          ) : (
-            <div className="payment-form">
-              <form onSubmit={handlePaymentSubmit}>
-                <label htmlFor="cardNumber">Kart Numarası</label>
-                <input
-                  type="text"
-                  id="cardNumber"
-                  name="cardNumber"
-                  placeholder="Kart numarası 16 haneli bir sayı olmalıdır"
-                  value={paymentInfo.cardNumber}
-                  onChange={handleInputChange}
-                />
+                {isPaymentProcessing ? (
+                  <Loading />
+                ) : (
+                  <>
+                    {isPaymentSuccessful ? (
+                      <>
+                        <p>Ödeme başarıyla tamamlandı!</p>
+                        <Link
+                          href="/"
+                          onClick={() => {
+                            setTotalPrice(0);
+                            setNewUserGender("");
+                            setNewSelectedSeats([]);
+                          }}
+                        >
+                          Anasayfaya Dön
+                        </Link>
+                      </>
+                    ) : (
+                      <div className="payment-form">
+                        <form
+                          className="search-form"
+                          onSubmit={handlePaymentSubmit}
+                        >
+                          <label
+                            className="form-label mt-3 mb-1"
+                            htmlFor="cardNumber"
+                          >
+                            Kart Numarası
+                          </label>
+                          <input
+                            className="form-control"
+                            type="text"
+                            id="cardNumber"
+                            name="cardNumber"
+                            placeholder="Kart numarası 16 haneli bir sayı olmalıdır"
+                            value={paymentInfo.cardNumber}
+                            onChange={handleInputChange}
+                          />
 
-                <label htmlFor="cardHolder">Kart Sahibi</label>
-                <input
-                  type="text"
-                  id="cardHolder"
-                  name="cardHolder"
-                  placeholder="Sadece harf ve boşluk içerebilir"
-                  value={paymentInfo.cardHolder}
-                  onChange={handleInputChange}
-                />
+                          <label
+                            className="form-label mt-3 mb-1"
+                            htmlFor="cardHolder"
+                          >
+                            Kart Sahibi
+                          </label>
+                          <input
+                            className="form-control"
+                            type="text"
+                            id="cardHolder"
+                            name="cardHolder"
+                            placeholder="Sadece harf ve boşluk içerebilir"
+                            value={paymentInfo.cardHolder}
+                            onChange={handleInputChange}
+                          />
 
-                <label htmlFor="expirationDate">
-                  Son Kullanma Tarihi (AA/YY)
-                </label>
-                <input
-                  type="text"
-                  id="expirationDate"
-                  name="expirationDate"
-                  value={paymentInfo.expirationDate}
-                  onChange={handleInputChange}
-                  placeholder="AA/YY formatında olmalıdır"
-                  maxLength={5}
-                />
+                          <label
+                            className="form-label mt-3 mb-1"
+                            htmlFor="expirationDate"
+                          >
+                            Son Kullanma Tarihi (AA/YY)
+                          </label>
+                          <input
+                            className="form-control"
+                            type="text"
+                            id="expirationDate"
+                            name="expirationDate"
+                            value={paymentInfo.expirationDate}
+                            onChange={handleInputChange}
+                            placeholder="AA/YY formatında olmalıdır"
+                            maxLength={5}
+                          />
 
-                <label htmlFor="cvv">CVV</label>
-                <input
-                  type="text"
-                  id="cvv"
-                  name="cvv"
-                  placeholder="3 veya 4 haneli bir sayı olmalı"
-                  value={paymentInfo.cvv}
-                  onChange={handleInputChange}
-                  maxLength={3}
-                />
+                          <label className="form-label mt-3 mb-1" htmlFor="cvv">
+                            CVV
+                          </label>
+                          <input
+                            className="form-control"
+                            type="text"
+                            id="cvv"
+                            name="cvv"
+                            placeholder="3 veya 4 haneli bir sayı olmalıdır"
+                            value={paymentInfo.cvv}
+                            onChange={handleInputChange}
+                            maxLength={3}
+                          />
 
-                <button onClick={handlePaymentSubmit}>Ödemeyi Onayla</button>
-              </form>
+                          <button
+                            className="btn btn-success my-3"
+                            onClick={handlePaymentSubmit}
+                          >
+                            Ödemeyi Onayla
+                          </button>
+                        </form>
+                      </div>
+                    )}
+                  </>
+                )}
+              </main>
             </div>
-          )}
-        </>
-      )}
+          </div>
 
-      <ToastContainer />
-    </div>
+          <div className="col-4"></div>
+        </div>
+      </div>
+      <footer className="footer">
+        <p>&copy; {new Date().getFullYear()} Bus Ticket App</p>
+      </footer>
+    </>
   );
 };
 
