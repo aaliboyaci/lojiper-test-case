@@ -19,7 +19,7 @@ const GenderModal: React.FC<GenderModalProps> = ({
   };
 
   const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault(); // Sayfanın yeniden yüklenmesini engellemek için
+    event.preventDefault();
 
     setNewUserGender(gender);
     onGenderSubmit(gender);

@@ -23,13 +23,7 @@ const SeatSelectionPage: React.FC = () => {
   const departCity = searchParams.get("depart");
   const arrivalCity = searchParams.get("arrival");
   const { userGender } = useContext(MainContext);
-  const {
-    userSearchQuery,
-    userName,
-    setTotalPrice,
-    newUserGender,
-    setNewUserGender,
-  } = useContext(MainContext);
+  const { userSearchQuery, userName, setTotalPrice } = useContext(MainContext);
   const [searchResults, setSearchResults] = useState<TravelData | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const [newSeatData, setNewSeatData] = useState<BusSeatData | undefined>(

@@ -23,8 +23,8 @@ export interface UserTicketSelect {
   newUserGender: string;
   newUserTCNO: string;
   newUserName: string;
-  newUserSeat: string;
-  newSelectedSeats: UserTicketSelect[];
+  newUserSeat?: string | null;
+  newSelectedSeats?: UserTicketSelect[];
 }
 
 interface MainContextProps {
@@ -41,7 +41,7 @@ interface MainContextProps {
   newSelectedSeats: UserTicketSelect[];
   setNewSelectedSeats: React.Dispatch<React.SetStateAction<UserTicketSelect[]>>;
   newUserGender: string;
-  setNewUserGender: React.Dispatch<React.SetStateAction<string>>; // Düzeltildi
+  setNewUserGender: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface MainProviderProps {
@@ -82,7 +82,7 @@ export const MainProvider: React.FC<MainProviderProps> = ({ children }) => {
   const [newSelectedSeats, setNewSelectedSeats] = useState<UserTicketSelect[]>(
     []
   );
-  const [newUserGender, setNewUserGender] = useState(""); // Düzeltildi
+  const [newUserGender, setNewUserGender] = useState("");
 
   const contextValues: MainContextProps = {
     isLogin,
