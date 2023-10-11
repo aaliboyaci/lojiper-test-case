@@ -1,6 +1,4 @@
-/* GenderModal.css */
-
-.modal {
+.modal-ticket {
     position: fixed;
     top: 0;
     left: 0;
@@ -13,11 +11,11 @@
     z-index: 100;
 }
 
-.modal.open {
+.modal-ticket.open {
     display: flex;
 }
 
-.modal-content {
+.modal-ticket-content {
     background: white;
     padding: 20px;
     border-radius: 4px;

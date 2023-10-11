@@ -17,7 +17,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header">
+    <header className="header border-bottom pb-3">
       <div className="header-container">
         <div className="title-app">
           <Link className="title-app" href="/">

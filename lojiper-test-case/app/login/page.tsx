@@ -39,9 +39,11 @@ const LoginForm: React.FC<LoginFormProps> = ({
       </div>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <button type="submit">Giriş Yap</button>
+      <br></br>
+      <br></br>
       {isLoading && <Loading />}
       <p>
-        Hesabınız yok mu?{" "}
+        Hesabınız yok mu?
         <span
           onClick={handleRegisterRedirect}
           style={{ cursor: "pointer", color: "blue" }}
@@ -88,17 +90,20 @@ const Login = () => {
   return (
     <div className="main">
       <Header />
-      <h1>Kullanıcı Girişi</h1>
-      <LoginForm
-        username={username}
-        password={password}
-        setUsername={setUsername}
-        setPassword={setPassword}
-        error={error}
-        isLoading={isLoading}
-        handleLogin={handleLogin}
-        handleRegisterRedirect={handleRegisterRedirect}
-      />
+      <div className="border p-4">
+        <h1>Kullanıcı Girişi</h1>
+
+        <LoginForm
+          username={username}
+          password={password}
+          setUsername={setUsername}
+          setPassword={setPassword}
+          error={error}
+          isLoading={isLoading}
+          handleLogin={handleLogin}
+          handleRegisterRedirect={handleRegisterRedirect}
+        />
+      </div>
     </div>
   );
 };

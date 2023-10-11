@@ -70,30 +70,42 @@ const Home = () => {
     <>
       <ToastContainer />
       <Header />
-      <main className="main">
-        <div className="formContainer">
+      <div className="row justify-content-center p-0" style={{ width: "auto" }}>
+        <main className="col-md p-4 border formContainer">
           <h2>Seferleri Ara</h2>
           <form className="searchForm" onSubmit={handleSearchSubmit}>
-            <label htmlFor="departure">Kalkış</label>
-            {renderDepartureOptions()}
+            <div className="form-group">
+              <label htmlFor="departure">Kalkış</label>
+              {renderDepartureOptions()}
+            </div>
 
-            <label htmlFor="arrival">Varış</label>
-            {renderArrivalOptions()}
+            <div className="form-group">
+              <label htmlFor="arrival">Varış</label>
+              {renderArrivalOptions()}
+            </div>
 
-            <label htmlFor="date">Tarih</label>
-            <input
-              type="date"
-              id="date"
-              name="date"
-              value={inputDate}
-              onChange={(e) => setInputDate(e.target.value)}
-            />
-            <br></br>
-            <button type="submit">Ara</button>
-            {isLoading && <Loading />}
+            <div className="form-group">
+              <label htmlFor="date">Tarih</label>
+              <input
+                className="form-control"
+                type="date"
+                id="date"
+                name="date"
+                value={inputDate}
+                onChange={(e) => setInputDate(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group">
+              <button className="btn btn-primary" type="submit">
+                Ara
+              </button>
+              {isLoading && <Loading />}
+            </div>
           </form>
-        </div>
-      </main>
+        </main>
+      </div>
+
       <footer className="footer">
         <p>&copy; {new Date().getFullYear()} Bus Ticket App</p>
       </footer>

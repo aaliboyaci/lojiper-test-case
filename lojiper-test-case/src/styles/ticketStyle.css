@@ -53,7 +53,7 @@
 }
 
 .bus-seat.selected {
-    background-color: #3498db;
+    background-color: #3498db !important;
     color: #fff;
 }
 

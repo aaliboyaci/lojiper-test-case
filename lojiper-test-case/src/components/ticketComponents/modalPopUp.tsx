@@ -26,31 +26,32 @@ const GenderModal: React.FC<GenderModalProps> = ({
   };
 
   return (
-    <div className={`modal ${isModalOpen === 1 ? "open" : ""}`}>
-      <div className="modal-content">
+    <div className={`modal-ticket ${isModalOpen === 1 ? "open" : ""}`}>
+      <div className="modal-ticket-content">
         <h2>Cinsiyet Seçimi</h2>
-        <div>
-          <label>
-            <input
-              type="radio"
-              name="gender"
-              value="male"
-              checked={gender === "male"}
-              onChange={() => handleGenderSelect("male")}
-            />
-            Erkek
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="gender"
-              value="female"
-              checked={gender === "female"}
-              onChange={() => handleGenderSelect("female")}
-            />
-            Kadın
-          </label>
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="radio"
+            name="gender"
+            value="male"
+            checked={gender === "male"}
+            onChange={() => handleGenderSelect("male")}
+          />
+          <label className="form-check-label">Erkek</label>
         </div>
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="radio"
+            name="gender"
+            value="female"
+            checked={gender === "female"}
+            onChange={() => handleGenderSelect("female")}
+          />
+          <label className="form-check-label">Kadın</label>
+        </div>
+
         <button onClick={handleSubmit}>Onayla</button>
       </div>
     </div>

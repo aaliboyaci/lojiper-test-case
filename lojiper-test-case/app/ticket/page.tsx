@@ -14,6 +14,7 @@ import handleSeatClick from "../../src/components/ticketComponents/handeSeatClic
 import "../../src/styles/MainStyles.css";
 import Header from "../../src/components/Header";
 import GenderModal from "@/src/components/ticketComponents/modalPopUp";
+import TravelInfoPage from "../travel-info/page";
 
 const SeatSelectionPage: React.FC = () => {
   const router = useRouter();
@@ -39,7 +40,7 @@ const SeatSelectionPage: React.FC = () => {
   const [error, setError] = useState("");
 
   const [isModalOpen, setIsModalOpen] = useState(0);
-
+  console.log(selectedSeats);
   useEffect(() => {
     setSelectedSeats([]);
     fetchBusSeatData(Number(id))
@@ -96,11 +97,7 @@ const SeatSelectionPage: React.FC = () => {
   };
 
   const handleGenderSubmit = async (newUserGender: string) => {
-    await closeModal(); // closeModal bitimini bekler
-    console.log("cinsiyet" + newUserGender);
-    console.log("row " + seatRow);
-    console.log("col " + seatCol);
-
+    await closeModal();
     handleSeatClickWrapper(seatRow, seatCol, newUserGender);
   };
 
@@ -128,7 +125,7 @@ const SeatSelectionPage: React.FC = () => {
     <div className="main">
       <div className="seat-selection-page">
         <Header />
-        <h1>Sefer Detayları ve Fiyat</h1>
+        <h1>Koltuk Seçimi</h1>
         <p>
           Merhaba {userName}
           {userGender === "male" ? <>{"(e)"}</> : <>{"(k)"}</>}
@@ -145,7 +142,8 @@ const SeatSelectionPage: React.FC = () => {
                 <div
                   key={colIndex}
                   className={`bus-seat ${
-                    selectedSeats.includes(`${rowIndex}${colIndex}`)
+                    selectedSeats.includes(`${rowIndex}${colIndex}female`) ||
+                    selectedSeats.includes(`${rowIndex}${colIndex}male`)
                       ? "selected"
                       : passenger === "male"
                       ? "occupied-male"
@@ -154,20 +152,26 @@ const SeatSelectionPage: React.FC = () => {
                       : ""
                   } ${colIndex === 1 ? "gapBetween" : ""}`}
                   onClick={() => {
-                    if (selectedSeats.includes(`${rowIndex}${colIndex}`)) {
-                      setSelectedSeats(
-                        selectedSeats.filter(
-                          (s) => s !== `${rowIndex}${colIndex}`
+                    if (
+                      selectedSeats.includes(`${rowIndex}${colIndex}female`) ||
+                      selectedSeats.includes(`${rowIndex}${colIndex}male`)
+                    ) {
+                      setSelectedSeats((prevSelectedSeats) =>
+                        prevSelectedSeats.filter(
+                          (s) =>
+                            s !== `${rowIndex}${colIndex}female` &&
+                            s !== `${rowIndex}${colIndex}male`
                         )
                       );
                     } else {
-                      openModal(); // Koltuğa tıkladığınızda modalı aç
+                      openModal();
                       setSeatRow(rowIndex);
                       setSeatCol(colIndex);
                     }
                   }}
                 >
-                  {selectedSeats.includes(`${rowIndex}${colIndex}`)
+                  {selectedSeats.includes(`${rowIndex}${colIndex}female`) ||
+                  selectedSeats.includes(`${rowIndex}${colIndex}male`)
                     ? "X"
                     : passenger
                     ? passenger === "male"
@@ -179,7 +183,10 @@ const SeatSelectionPage: React.FC = () => {
             </div>
           ))}
         </div>
-
+        <div></div>
+        <br></br>
+        <br></br>
+        <TravelInfoPage selectedSeats={selectedSeats} />
         <div className="total-price">
           Toplam Ücret: {calculateTotalPrice()} TL
         </div>

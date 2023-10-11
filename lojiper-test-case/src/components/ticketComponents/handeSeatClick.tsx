@@ -10,7 +10,6 @@ const handleSeatClick = async (
   setSelectedSeats: React.Dispatch<React.SetStateAction<string[]>>
 ) => {
   const seat = `${row}${col}`;
-
   if (
     (busLayout[row][col] === "male" || busLayout[row][col] === "female") &&
     !selectedSeats.includes(seat)
@@ -96,7 +95,7 @@ const handleSeatClick = async (
   if (selectedSeats.includes(seat)) {
     setSelectedSeats(selectedSeats.filter((s) => s !== seat));
   } else {
-    setSelectedSeats([...selectedSeats, seat]);
+    setSelectedSeats([...selectedSeats, seat + newUserGender]);
   }
   // console.clear();
 };

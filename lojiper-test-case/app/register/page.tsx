@@ -92,7 +92,7 @@ export default function Register() {
     <div className="register-container">
       <Header />
       <ToastContainer />
-      <div className="register-form">
+      <div className="register-form border">
         <h1>Kayıt Ol</h1>
         <form onSubmit={handleRegister}>
           <FormInput
