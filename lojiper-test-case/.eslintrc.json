@@ -12,15 +12,7 @@
     }
   },
   "rules": {
-    "no-unused-vars": [
-      "error non used variables",
-      {
-        "vars": "all",
-        "args": "after-used",
-        "ignoreRestSiblings": true,
-        "argsIgnorePattern": "^_"
-      }
-    ],
+    "no-unused-vars": 1,
     "react/react-in-jsx-scope": "off"
   }
 }
