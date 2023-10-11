@@ -9,6 +9,7 @@ import { LoginFormProps } from "../../src/Interfaces/uiRelatedTypes";
 import Header from "../../src/components/Header";
 import "../../src/styles/MainStyles.css";
 import { ToastContainer } from "react-toastify";
+import Footer from "@/src/components/Footer";
 
 const LoginForm: React.FC<LoginFormProps> = ({
   username,
@@ -119,6 +120,7 @@ const Login = () => {
           <div className="col-4"></div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

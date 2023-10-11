@@ -5,16 +5,19 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BusSeatData } from "../api/travelData/busSeatData/busSeatData";
 import { fetchBusSeatData } from "@/business-logic/fetchBusSeatData";
-import "../../src/styles/ticketStyle.css";
-import Loading from "../../src/components/Loading";
 import { fetchTravelData } from "@/business-logic/fetchTravelData";
 import { MainContext } from "../Context/mainProvider";
-import { TravelData } from "../../src/Interfaces/uiRelatedTypes";
-import handleSeatClick from "../../src/components/ticketComponents/handeSeatClick";
-import "../../src/styles/MainStyles.css";
 import Header from "../../src/components/Header";
 import GenderModal from "@/src/components/ticketComponents/modalPopUp";
 import TravelInfoPage from "../../src/components/ticketComponents/TravelInfo";
+
+import "../../src/styles/ticketStyle.css";
+import "../../src/styles/MainStyles.css";
+
+import Loading from "../../src/components/Loading";
+import { TravelData } from "../../src/Interfaces/uiRelatedTypes";
+import handleSeatClick from "../../src/components/ticketComponents/handeSeatClick";
+import Footer from "@/src/components/Footer";
 
 const SeatSelectionPage: React.FC = () => {
   const router = useRouter();
@@ -22,8 +25,7 @@ const SeatSelectionPage: React.FC = () => {
   const id = searchParams.get("id");
   const departCity = searchParams.get("depart");
   const arrivalCity = searchParams.get("arrival");
-  const { userGender } = useContext(MainContext);
-  const { userSearchQuery, userName, setTotalPrice } = useContext(MainContext);
+  const { userSearchQuery, setTotalPrice } = useContext(MainContext);
   const [searchResults, setSearchResults] = useState<TravelData | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const [newSeatData, setNewSeatData] = useState<BusSeatData | undefined>(
@@ -203,8 +205,6 @@ const SeatSelectionPage: React.FC = () => {
                     const isVerifyingDone = document.querySelectorAll(
                       ".ticket-info-disabled"
                     );
-                    console.log(isVerifyingDone);
-                    console.log(selectedSeats);
 
                     if (selectedSeats.length == 0) {
                       toast.warn("Koltuk seçmediniz");
@@ -241,10 +241,7 @@ const SeatSelectionPage: React.FC = () => {
           </div>
           <div className="col-4"></div>
         </div>
-
-        <footer className="footer">
-          <p>&copy; {new Date().getFullYear()} Bus Ticket App</p>
-        </footer>
+        <Footer />
       </div>
     </>
   );

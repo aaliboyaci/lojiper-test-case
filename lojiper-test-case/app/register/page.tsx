@@ -14,6 +14,7 @@ import {
 } from "../../src/components/registerComponents/ShowToast";
 import { ToastContainer } from "react-toastify";
 import Header from "../../src/components/Header";
+import Footer from "@/src/components/Footer";
 
 export default function Register() {
   const router = useRouter();
@@ -159,9 +160,7 @@ export default function Register() {
               </main>
             </div>
 
-            <footer className="footer">
-              <p>&copy; {new Date().getFullYear()} Bus Ticket App</p>
-            </footer>
+            <Footer />
           </div>
           <div className="col-4"></div>
         </div>

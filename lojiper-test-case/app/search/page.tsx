@@ -10,9 +10,10 @@ import { fetchBusSeatData } from "@/business-logic/fetchBusSeatData";
 import { BusSeatData } from "../api/travelData/busSeatData/busSeatData";
 import Loading from "../../src/components/Loading";
 import { ToastContainer } from "react-toastify";
+import Footer from "@/src/components/Footer";
 
 const SearchResultsPage = () => {
-  const { isLogin, userName, userSearchQuery } = useContext(MainContext);
+  const { isLogin, userSearchQuery } = useContext(MainContext);
   const [searchResults, setSearchResults] = useState<TravelData | null>(null);
   const [seatInfo, setSeatInfo] = useState<number | null>(null);
   const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(false);
@@ -105,9 +106,7 @@ const SearchResultsPage = () => {
           </div>
 
           <div className="col-4"></div>
-          <footer className="footer">
-            <p>&copy; {new Date().getFullYear()} Bus Ticket App</p>
-          </footer>
+          <Footer />
         </div>
       </div>
     </>

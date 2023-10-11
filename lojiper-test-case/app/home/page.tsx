@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Loading from "../../src/components/Loading";
 import Header from "@/src/components/Header";
+import Footer from "@/src/components/Footer";
 
 const Home = () => {
   const { setUserSearchQuery } = useContext(MainContext);
@@ -117,10 +118,7 @@ const Home = () => {
                 </form>
               </main>
             </div>
-
-            <footer className="footer">
-              <p>&copy; {new Date().getFullYear()} Bus Ticket App</p>
-            </footer>
+            <Footer />
           </div>
           <div className="col-4"></div>
         </div>

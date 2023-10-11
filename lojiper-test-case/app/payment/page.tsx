@@ -9,6 +9,7 @@ import Header from "../../src/components/Header";
 import "../../src/styles/MainStyles.css";
 import verifiedImage from "../../src/images/check.png";
 import Image from "next/image";
+import Footer from "@/src/components/Footer";
 
 const PaymentPage: React.FC = () => {
   const {
@@ -203,9 +204,7 @@ const PaymentPage: React.FC = () => {
           <div className="col-4"></div>
         </div>
       </div>
-      <footer className="footer">
-        <p>&copy; {new Date().getFullYear()} Bus Ticket App</p>
-      </footer>
+      <Footer />
     </>
   );
 };
