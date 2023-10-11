@@ -58,7 +58,7 @@ const PaymentPage: React.FC = () => {
       toast.success("Ödeme başarıyla tamamlandı!");
     }, 1800);
   };
-  console.log(newSelectedSeats);
+  console.clear();
   return (
     <div className="main">
       <Header />

@@ -1,12 +1,15 @@
+"use client";
 import React, { useContext } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import "@/src/styles/ticketStyle.css";
-
-import { MainContext, UserTicketSelect } from "../Context/mainProvider";
+import {
+  MainContext,
+  UserTicketSelect,
+} from "../../../app/Context/mainProvider";
 import seatNumberCreator from "@/src/components/ticketComponents/seatNumberCreator";
 
-interface TravelInfoProps {
+export interface TravelInfoProps {
   selectedSeats: string[];
 }
 

@@ -66,6 +66,7 @@ const Login = () => {
 
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
+    console.clear();
     const currentUser = await validateUserLogin(
       username,
       password,

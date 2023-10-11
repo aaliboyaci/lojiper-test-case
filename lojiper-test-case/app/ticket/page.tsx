@@ -14,7 +14,7 @@ import handleSeatClick from "../../src/components/ticketComponents/handeSeatClic
 import "../../src/styles/MainStyles.css";
 import Header from "../../src/components/Header";
 import GenderModal from "@/src/components/ticketComponents/modalPopUp";
-import TravelInfoPage from "../travel-info/page";
+import TravelInfoPage from "../../src/components/ticketComponents/TravelInfo";
 
 const SeatSelectionPage: React.FC = () => {
   const router = useRouter();
@@ -34,7 +34,7 @@ const SeatSelectionPage: React.FC = () => {
   const [error, setError] = useState("");
 
   const [isModalOpen, setIsModalOpen] = useState(0);
-  console.log(selectedSeats);
+  console.clear();
   useEffect(() => {
     setSelectedSeats([]);
     fetchBusSeatData(Number(id))
@@ -187,8 +187,15 @@ const SeatSelectionPage: React.FC = () => {
         <button
           className="continue-button"
           onClick={() => {
+            const isVerifyingDone = document.querySelector(
+              `.row-auto.border.p-2.my-2`
+            );
             if (selectedSeats.length === 0) {
               toast.warn("Koltuk seçmediniz");
+            } else if (isVerifyingDone !== null) {
+              toast.error(
+                "Kullanıcı bilgilerini doğrulamadan ilerleyemezsiniz"
+              );
             } else {
               setTotalPrice(
                 searchResults?.price
@@ -197,6 +204,7 @@ const SeatSelectionPage: React.FC = () => {
               );
               setSelectedSeats([]);
               router.push("/payment");
+              console.clear();
             }
           }}
         >

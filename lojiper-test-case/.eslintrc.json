@@ -10,9 +10,5 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
-  },
-  "rules": {
-    "no-unused-vars": 1,
-    "react/react-in-jsx-scope": "off"
   }
 }

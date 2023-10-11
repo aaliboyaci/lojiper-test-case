@@ -97,7 +97,7 @@ const handleSeatClick = async (
   } else {
     setSelectedSeats([...selectedSeats, seat + newUserGender]);
   }
-  // console.clear();
+  console.clear();
 };
 
 export default handleSeatClick;
