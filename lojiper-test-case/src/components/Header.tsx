@@ -17,7 +17,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header border-bottom pb-3">
+    <header className="header border-bottom pb-3 px-3">
       <div className="header-container">
         <div className="title-app">
           <Link className="title-app" href="/">
@@ -33,7 +33,6 @@ const Header = () => {
                 className="btn btn-danger"
                 onClick={handleLogOut}
               >
-                {" "}
                 Çıkış Yap
               </button>
             </>
