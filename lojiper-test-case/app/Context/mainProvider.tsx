@@ -19,6 +19,14 @@ export interface UserSearchQuery {
   inputDate: string;
 }
 
+export interface UserTicketSelect {
+  newUserGender: string;
+  newUserTCNO: string;
+  newUserName: string;
+  newUserSeat: string;
+  newSelectedSeats: UserTicketSelect[];
+}
+
 interface MainContextProps {
   isLogin: boolean;
   setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
@@ -30,6 +38,10 @@ interface MainContextProps {
   setUserGender: React.Dispatch<React.SetStateAction<string>>;
   totalPrice: number;
   setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
+  newSelectedSeats: UserTicketSelect[];
+  setNewSelectedSeats: React.Dispatch<React.SetStateAction<UserTicketSelect[]>>;
+  newUserGender: string;
+  setNewUserGender: React.Dispatch<React.SetStateAction<string>>; // Düzeltildi
 }
 
 interface MainProviderProps {
@@ -51,6 +63,10 @@ export const MainContext = createContext<MainContextProps>({
   setUserGender: () => {},
   totalPrice: 0,
   setTotalPrice: () => {},
+  newSelectedSeats: [],
+  setNewSelectedSeats: () => {},
+  newUserGender: "",
+  setNewUserGender: () => {},
 });
 
 export const MainProvider: React.FC<MainProviderProps> = ({ children }) => {
@@ -63,6 +79,10 @@ export const MainProvider: React.FC<MainProviderProps> = ({ children }) => {
     arrivalCity: "",
     inputDate: "",
   });
+  const [newSelectedSeats, setNewSelectedSeats] = useState<UserTicketSelect[]>(
+    []
+  );
+  const [newUserGender, setNewUserGender] = useState(""); // Düzeltildi
 
   const contextValues: MainContextProps = {
     isLogin,
@@ -75,6 +95,10 @@ export const MainProvider: React.FC<MainProviderProps> = ({ children }) => {
     setUserGender,
     totalPrice,
     setTotalPrice,
+    newSelectedSeats,
+    setNewSelectedSeats,
+    newUserGender,
+    setNewUserGender,
   };
 
   return (

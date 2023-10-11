@@ -13,6 +13,7 @@ import { TravelData } from "../../src/Interfaces/uiRelatedTypes";
 import handleSeatClick from "../../src/components/ticketComponents/handeSeatClick";
 import "../../src/styles/MainStyles.css";
 import Header from "../../src/components/Header";
+import GenderModal from "@/src/components/ticketComponents/modalPopUp";
 
 const SeatSelectionPage: React.FC = () => {
   const router = useRouter();
@@ -21,13 +22,23 @@ const SeatSelectionPage: React.FC = () => {
   const departCity = searchParams.get("depart");
   const arrivalCity = searchParams.get("arrival");
   const { userGender } = useContext(MainContext);
-  const { userSearchQuery, userName, setTotalPrice } = useContext(MainContext);
+  const {
+    userSearchQuery,
+    userName,
+    setTotalPrice,
+    newUserGender,
+    setNewUserGender,
+  } = useContext(MainContext);
   const [searchResults, setSearchResults] = useState<TravelData | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const [newSeatData, setNewSeatData] = useState<BusSeatData | undefined>(
     undefined
   );
+  const [seatRow, setSeatRow] = useState<number>(0);
+  const [seatCol, setSeatCol] = useState<number>(0);
   const [error, setError] = useState("");
+
+  const [isModalOpen, setIsModalOpen] = useState(0);
 
   useEffect(() => {
     setSelectedSeats([]);
@@ -49,7 +60,6 @@ const SeatSelectionPage: React.FC = () => {
         setError("Bir Hata oluştu, lütfen tekrar deneyiniz");
       });
   }, []);
-
   if (!newSeatData) {
     return (
       <div className="main">
@@ -57,7 +67,6 @@ const SeatSelectionPage: React.FC = () => {
       </div>
     );
   }
-
   const seatData = newSeatData;
   const numRows = 5;
   const numCols = 4;
@@ -78,12 +87,33 @@ const SeatSelectionPage: React.FC = () => {
     }
   );
 
-  const handleSeatClickWrapper = (row: number, col: number) => {
+  const openModal = () => {
+    setIsModalOpen(1);
+  };
+
+  const closeModal = async () => {
+    setIsModalOpen(2);
+  };
+
+  const handleGenderSubmit = async (newUserGender: string) => {
+    await closeModal(); // closeModal bitimini bekler
+    console.log("cinsiyet" + newUserGender);
+    console.log("row " + seatRow);
+    console.log("col " + seatCol);
+
+    handleSeatClickWrapper(seatRow, seatCol, newUserGender);
+  };
+
+  const handleSeatClickWrapper = (
+    row: number,
+    col: number,
+    newUserGender: string
+  ) => {
     handleSeatClick(
       row,
       col,
       busLayout,
-      userGender,
+      newUserGender,
       selectedSeats,
       setSelectedSeats
     );
@@ -123,7 +153,19 @@ const SeatSelectionPage: React.FC = () => {
                       ? "occupied-female"
                       : ""
                   } ${colIndex === 1 ? "gapBetween" : ""}`}
-                  onClick={() => handleSeatClickWrapper(rowIndex, colIndex)}
+                  onClick={() => {
+                    if (selectedSeats.includes(`${rowIndex}${colIndex}`)) {
+                      setSelectedSeats(
+                        selectedSeats.filter(
+                          (s) => s !== `${rowIndex}${colIndex}`
+                        )
+                      );
+                    } else {
+                      openModal(); // Koltuğa tıkladığınızda modalı aç
+                      setSeatRow(rowIndex);
+                      setSeatCol(colIndex);
+                    }
+                  }}
                 >
                   {selectedSeats.includes(`${rowIndex}${colIndex}`)
                     ? "X"
@@ -161,6 +203,13 @@ const SeatSelectionPage: React.FC = () => {
         </button>
         <ToastContainer />
       </div>
+
+      {isModalOpen === 1 && (
+        <GenderModal
+          onGenderSubmit={handleGenderSubmit}
+          isModalOpen={isModalOpen}
+        />
+      )}
     </div>
   );
 };
