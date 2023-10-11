@@ -38,14 +38,10 @@ It has been deployed by using Vercel.
 - In case of unsuccessful login, an error message is displayed.
 - First-time users are directed to the registration page.
 
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/login.png" alt="login" width="600">
-
 ### 2. Registration Page
 
 - Users can enter their information (email, password, first name, last name, gender, birthdate).
 - Upon successful registration, users are directed to the login page.
-
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/register.png" alt="register" width="600">
 
 ### 3. Homepage
 
@@ -54,8 +50,6 @@ It has been deployed by using Vercel.
 - Trips are listed using the "Search" button.
 - If there are no available trips, a warning is displayed.
 - Trip details (departure-arrival cities, date, available seats, price) are shown.
-
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/homepage.png" alt="home" width="600">
 
 ### 4. Ticket Sales Page
 
@@ -66,8 +60,7 @@ It has been deployed by using Vercel.
 - If adjacent seats are not selected together, users cannot sit next to the opposite gender. In this case, a warning is displayed, and the seat cannot be selected.
 - The total amount area updates as seat selections are made.
 - If the user does not select seats, they cannot proceed to the payment page and receive a warning message.
-
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/ticketpage.png" alt="ticket" width="600"> <img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/ticketpage-warning.png" alt="ticket-warning" width="600">
+- The user must enter mandatory passenger information for each selected seat, otherwise a warning message will be given.
 
 ### 5. Payment Page
 
@@ -76,8 +69,6 @@ It has been deployed by using Vercel.
 - If the form information is incomplete, a warning is displayed.
 - If the payment is successful, a spinner is displayed for a brief moment (a failed payment scenario was not requested for this use case).
 - In case of a successful payment, a "Return to Homepage" button and a success message are shown.
-
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/paymentpage.png" alt="payment" width="600"> <img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/payment-success.png" alt="payment-successful" width="600">
 
 ## Example User Data
 
@@ -107,6 +98,12 @@ Ankara > Antalya
 İstanbul > Antalya
 Ankara > İzmir
 Ankara > Antalya
+
+## Screenshots
+
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/main/screen-shots/1.jpg" alt="screenshots" width="800">
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/main/screen-shots/2.jpg" alt="screenshots" width="800">
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/main/screen-shots/3.jpg" alt="screenshots" width="800">
 
 ## Installation and Running
 

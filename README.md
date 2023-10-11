@@ -39,13 +39,10 @@ Vercel üzerinden deploy edilmiştir.
 - İlk defa giriş yapan kullanıcılar kayıt ol sayfasına yönlendirilebilir.
 - Giriş yaptıktan sonra, üst kısımda "Hoşgeldin" mesajının yanındaki "Çıkış yap" butonu ile LogOut işlemini gerçekleştirebilir.
 
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/login.png" alt="login" width="600">
-
 ### 2. Kayıt Ol Sayfası
 
 - Kullanıcı bilgileri (e-posta, şifre, ad, soyad, cinsiyet, doğum tarihi) girilebilir.
 - Başarılı kayıt olma durumunda login sayfasına yönlendirilir.
-  <img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/register.png  " alt="register" width="600">
 
 ### 3. Anasayfa
 
@@ -55,20 +52,16 @@ Vercel üzerinden deploy edilmiştir.
 - Uygun sefer yoksa uyarı verilir.
 - Seferlerin bilgileri (kalkış- varış şehirleri, tarih, boş koltuk sayısı, fiyat) görüntülenir.
 
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/homepage.png" alt="home" width="600">
-
 ### 4. Bilet Satış Sayfası
 
 - Sefer detayları ve fiyatı gösterilir.
 - Koltuk seçimi yapılabilir.
-- Koltuklar dolu ise dolu koltuklardaki kişilerin cinsiyetleri "E", "K" oalrak belirtilir.
+- Koltuklar dolu ise dolu koltuklardaki kişilerin cinsiyetleri "E", "K" olarak belirtilir.
 - En fazla 5 koltuk seçilebilir, 6. koltuk seçimi uyarı verir.
 - Yan yana iki koltuk birlikte alınmıyorsa, karşı cinsin yanına oturulamaz, bu durumda kullanıcıya uyarı mesajı verilir ve o koltuk seçilemez.
 - Koltuk seçimleri yapıldıkça toplam tutar alanı güncellenir.
 - Eğer kullanıcı koltuk seçmediyse, ödeme sayfasına geçemez bu durumda uyarı mesajı verilir.
-
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/ticketpage.png" alt="ticket" width="600">
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/ticketpage-warning.png" alt="ticket-warning" width="600">
+- Kullanıcı her seçtiği koltuk için, zorunlu yolcu bilgilerini girmelidir, aksi takdirde uyarı mesajı verilir.
 
 ### 5. Ödeme Sayfası
 
@@ -77,9 +70,6 @@ Vercel üzerinden deploy edilmiştir.
 - Eğer form bilgileri eksik ise uyarı verilir.
 - Ödeme başarılı ise spinner ile beklenir. (user-case için başarısız durum istenmediği için böyle bir senaryo hazırlanmamıştır.)
 - Ödeme başarılı durumunda anasayfaya dönüş butonu ve mesaj görüntülenir.
-
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/paymentpage.png" alt="payment" width="600">
-<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/ab62151a2516b349cb524c9fe3d0be2112d7a124/screen-shots/payment-success.png" alt="payment-succesful" width="600">
 
 ## Örnek Kullanıcı Verileri
 
@@ -109,6 +99,12 @@ Ankara > Antalya
 İstanbul > Antalya
 Ankara > İzmir
 Ankara > Antalya
+
+## Ekran Görüntüleri
+
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/main/screen-shots/1.jpg" alt="screenshots" width="800">
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/main/screen-shots/2.jpg" alt="screenshots" width="800">
+<img src="https://github.com/aaliboyaci/lojiper-test-case/blob/main/screen-shots/3.jpg" alt="screenshots" width="800">
 
 ## Kurulum ve Çalıştırma
 
@@ -147,4 +143,4 @@ Ankara > Antalya
     - Adres çubuğuna `http://localhost:3000` yazın ve Enter tuşuna basın.
     - Bu adres, yerel sunucunuzda klonlanarak çalışan uygulamayı görüntüleyecektir.
 
-`Bu uygulama ve döküman Ali Boyacı tarafından, Lojiper Web Uygulama Test Case için yazılıp geliştirilmiştir. 2023 Ağustos 28`
+`Bu uygulama ve döküman Ali Boyacı tarafından, Lojiper Web Uygulama Test Case için yazılıp geliştirilmiştir. 2023 Ekim 1`
